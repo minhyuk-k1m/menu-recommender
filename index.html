@@ -70,7 +70,7 @@
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-        .intro-desc { font-size: 14px; color: var(--text-light); line-height: 1.6; margin-bottom: 22px; }
+        .intro-desc { font-size: 14px; color: var(--text-light); line-height: 1.6; margin-bottom: 20px; }
 
         /* Weather Badge */
         .weather-badge {
@@ -83,7 +83,7 @@
             font-size: 12px;
             font-weight: 600;
             color: #495057;
-            margin-bottom: 22px;
+            margin-bottom: 20px;
             cursor: pointer;
             transition: all 0.2s;
         }
@@ -106,7 +106,7 @@
             display: flex;
             flex-direction: column;
             gap: 10px;
-            margin-bottom: 26px;
+            margin-bottom: 24px;
         }
         .mode-btn {
             background: #f8f9fa;
@@ -239,6 +239,7 @@
             background: linear-gradient(135deg,#fff,#fafafa);
             border: 2px solid #f0f0f0; border-radius: 16px;
             padding: 18px; text-align: left; animation: slideIn .5s ease both;
+            position: relative;
         }
         .menu-card:nth-child(1) { border-color: var(--primary); background: linear-gradient(135deg,#fff5f5,#fff); animation-delay:.1s; }
         .menu-card:nth-child(2) { animation-delay:.3s; }
@@ -258,6 +259,16 @@
         .mc-info  { flex: 1; }
         .mc-name  { font-size: 19px; font-weight: 800; }
         .mc-cat   { display: inline-block; font-size: 11px; font-weight: 600; padding: 2px 8px; background: #f0f0f0; border-radius: 20px; color: var(--text-light); margin-left: 4px; }
+        .mc-ai-badge {
+            display: inline-block;
+            font-size: 10px;
+            font-weight: 800;
+            padding: 2px 8px;
+            background: linear-gradient(135deg, #ffe3e3, #ffc9c9);
+            color: #e03131;
+            border-radius: 12px;
+            margin-left: 6px;
+        }
         .mc-desc  { font-size: 13px; color: var(--text-light); margin-top: 5px; line-height: 1.4; }
         .mc-match { font-size: 12px; font-weight: 700; color: var(--primary); margin-top: 6px; }
 
@@ -291,6 +302,74 @@
         }
         .reason-box h3 { font-size: 14px; font-weight: 700; margin-bottom: 8px; color: var(--primary); }
         .reason-box p  { font-size: 13px; color: var(--text); line-height: 1.6; }
+
+        /* === 5-Star Rating Box === */
+        .rating-box {
+            background: #fff;
+            border: 2px solid #ffe8cc;
+            border-radius: 18px;
+            padding: 20px 16px;
+            margin-bottom: 22px;
+            box-shadow: 0 4px 14px rgba(255, 169, 77, 0.12);
+            text-align: center;
+        }
+        .rating-box h3 {
+            font-size: 15px;
+            font-weight: 800;
+            color: #d9480f;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+        .rating-desc {
+            font-size: 12px;
+            color: var(--text-light);
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+        .star-group {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+        .star-btn {
+            background: none;
+            border: none;
+            font-size: 32px;
+            color: #dee2e6;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            line-height: 1;
+            padding: 2px;
+        }
+        .star-btn:hover,
+        .star-btn.hovered,
+        .star-btn.active {
+            color: #fcc419;
+            transform: scale(1.18);
+        }
+        .rating-feedback-label {
+            font-size: 13px;
+            font-weight: 700;
+            color: #495057;
+            min-height: 18px;
+            margin-bottom: 6px;
+        }
+        .ai-learning-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #fff4e6;
+            color: #d9480f;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            margin-top: 6px;
+        }
 
         .btn-restart {
             background: linear-gradient(135deg,#a29bfe,#6c5ce7);
@@ -460,6 +539,24 @@
             <div class="menu-cards" id="menu-cards"></div>
             <div class="reason-box" id="reason-box"></div>
             <div class="summary-box" id="summary-box"></div>
+
+            <!-- ===== 5-Star Feedback & AI Learning ===== -->
+            <div class="rating-box" id="rating-box">
+                <h3>⭐ 이번 메뉴 추천은 어떠셨나요?</h3>
+                <p class="rating-desc">별점을 남겨주시면 AI가 취향을 스스로 학습하여 다음번에 더 정확하게 추천해 드려요!</p>
+                <div class="star-group" id="star-group">
+                    <button class="star-btn" data-star="1" onclick="rateResult(1)" onmouseenter="hoverStar(1)" onmouseleave="resetStarHover()">★</button>
+                    <button class="star-btn" data-star="2" onclick="rateResult(2)" onmouseenter="hoverStar(2)" onmouseleave="resetStarHover()">★</button>
+                    <button class="star-btn" data-star="3" onclick="rateResult(3)" onmouseenter="hoverStar(3)" onmouseleave="resetStarHover()">★</button>
+                    <button class="star-btn" data-star="4" onclick="rateResult(4)" onmouseenter="hoverStar(4)" onmouseleave="resetStarHover()">★</button>
+                    <button class="star-btn" data-star="5" onclick="rateResult(5)" onmouseenter="hoverStar(5)" onmouseleave="resetStarHover()">★</button>
+                </div>
+                <div class="rating-feedback-label" id="rating-label">별점을 선택해 주세요</div>
+                <div id="ai-status-container">
+                    <span class="ai-learning-status" id="ai-status-badge">🤖 AI 취향 학습 활성화됨</span>
+                </div>
+            </div>
+
             <button class="btn-restart" onclick="restart()">🔄 다시 하기</button>
 
             <div class="share-section">
@@ -523,6 +620,33 @@ let detectedWeather = ['cool']; // 'hot' | 'cool' | 'cold' | 'rainy'
 let weatherInfo = { temp: 22, text: '쾌적한 날씨', icon: '🌤️' };
 
 /* ================================================================
+   AI SELF-LEARNING PROFILE (localStorage)
+   ================================================================ */
+const AI_PROFILE_KEY = 'today_menu_ai_learning_v1';
+
+function getAIProfile() {
+    try {
+        const raw = localStorage.getItem(AI_PROFILE_KEY);
+        if (raw) return JSON.parse(raw);
+    } catch(e) {}
+    return {
+        totalRatings: 0,
+        menuWeights: {},
+        categoryWeights: {},
+        tasteWeights: {},
+        typeWeights: {}
+    };
+}
+
+function saveAIProfile(profile) {
+    try {
+        localStorage.setItem(AI_PROFILE_KEY, JSON.stringify(profile));
+    } catch(e) {}
+}
+
+let currentSessionRating = null;
+
+/* ================================================================
    WEATHER & GEOLOCATION SERVICE (Open-Meteo API)
    ================================================================ */
 function initWeather() {
@@ -532,7 +656,6 @@ function initWeather() {
                 fetchWeather(pos.coords.latitude, pos.coords.longitude, true);
             },
             (err) => {
-                // 권한 거부 또는 실패 시 서울 기본 좌표 기준 날씨 가져오기
                 fetchWeather(37.5665, 126.9780, false);
             },
             { timeout: 8000 }
@@ -555,7 +678,6 @@ async function fetchWeather(lat, lon, hasLocation) {
         let desc = '맑음/쾌적';
         const tags = [];
 
-        // 온도 태그
         if (temp >= 28) {
             tags.push('hot');
         } else if (temp <= 10) {
@@ -564,12 +686,11 @@ async function fetchWeather(lat, lon, hasLocation) {
             tags.push('cool');
         }
 
-        // WMO 날씨 코드 매핑
-        if (code >= 51 && code <= 67 || (code >= 80 && code <= 82) || (code >= 95 && code <= 99)) {
+        if ((code >= 51 && code <= 67) || (code >= 80 && code <= 82) || (code >= 95 && code <= 99)) {
             tags.push('rainy');
             icon = '🌧️';
             desc = '비/흐림';
-        } else if (code >= 71 && code <= 77 || code === 85 || code === 86) {
+        } else if ((code >= 71 && code <= 77) || code === 85 || code === 86) {
             tags.push('cold');
             icon = '❄️';
             desc = '눈';
@@ -594,7 +715,6 @@ async function fetchWeather(lat, lon, hasLocation) {
 
         updateWeatherBadge();
     } catch (e) {
-        // Fallback default
         detectedWeather = ['cool'];
         weatherInfo = { temp: 22, text: '22°C 쾌적함', icon: '🌤️', isExact: false };
         updateWeatherBadge();
@@ -637,7 +757,7 @@ function selectMode(mode) {
 }
 
 /* ================================================================
-   QUESTIONS (8 Questions - Gender is #1, Taste includes 'Any', Budget updated)
+   QUESTIONS (8 Questions)
    ================================================================ */
 const QUESTIONS = [
   {
@@ -812,6 +932,7 @@ function showScreen(id) {
 function startQuiz() {
   currentQ = 0;
   Object.keys(answers).forEach(k => delete answers[k]);
+  currentSessionRating = null;
   showScreen('question');
   renderQuestion();
 }
@@ -820,21 +941,17 @@ function renderQuestion() {
   const q = QUESTIONS[currentQ];
   const total = QUESTIONS.length;
 
-  // progress
   const pct = Math.round(((currentQ + 1) / total) * 100);
   document.getElementById('prog-text').textContent = `${currentQ + 1} / ${total}`;
   document.getElementById('prog-pct').textContent  = pct + '%';
   document.getElementById('prog-fill').style.width  = pct + '%';
 
-  // Mode tag update
   const modeLabels = { general: '🍱 일반 모드', diet: '🥗 다이어트 모드', health: '🥣 건강/회복식 모드' };
   document.getElementById('q-mode-tag').textContent = modeLabels[selectedMode] || '🍱 일반 모드';
 
-  // question info
   document.getElementById('q-emoji').textContent = q.emoji;
   document.getElementById('q-text').textContent  = q.text;
 
-  // options
   const wrap = document.getElementById('opts');
   wrap.innerHTML = '';
   q.options.forEach(opt => {
@@ -845,10 +962,8 @@ function renderQuestion() {
     wrap.appendChild(btn);
   });
 
-  // prev button
   document.getElementById('btn-prev').classList.toggle('hidden', currentQ === 0);
 
-  // animation reflow
   const card = document.querySelector('.question-card');
   card.style.animation = 'none';
   card.offsetHeight;
@@ -858,7 +973,6 @@ function renderQuestion() {
 function selectOption(qId, value) {
   answers[qId] = value;
 
-  // highlight clicked
   document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
   event.currentTarget.classList.add('selected');
 
@@ -899,14 +1013,14 @@ function showLoading() {
 }
 
 /* ================================================================
-   RECOMMENDATION ENGINE
+   RECOMMENDATION ENGINE (with AI Self-Learning weights)
    ================================================================ */
 function recommend() {
-  // 1. Filter by selected mode
   let pool = MENUS.filter(m => m.modes && m.modes.includes(selectedMode));
   if (pool.length === 0) pool = MENUS;
 
-  // 2. Weights
+  const aiProfile = getAIProfile();
+
   const WEIGHTS = {
     gender: 1,
     meal: 1,
@@ -922,20 +1036,18 @@ function recommend() {
     let score = 0;
     let maxScore = 0;
 
-    // 질문 기반 점수 계산
     for (const key of Object.keys(WEIGHTS)) {
       const w = WEIGHTS[key];
       maxScore += w;
 
       if (key === 'taste' && answers.taste === 'any') {
-        // '잘 모르겠어요' 선택 시 맛에 대한 편향 없이 기본 점수 부여
         score += w * 0.75;
       } else if (answers[key] && menu.tags[key] && menu.tags[key].includes(answers[key])) {
         score += w;
       }
     }
 
-    // 3. 자동 감지된 실시간 날씨 가중치 (추가 보너스 2점)
+    // Weather bonus (2점)
     maxScore += 2;
     if (detectedWeather && menu.tags.weather) {
       const weatherMatch = detectedWeather.some(w => menu.tags.weather.includes(w));
@@ -944,11 +1056,31 @@ function recommend() {
       }
     }
 
-    const pct = Math.min(100, Math.max(50, Math.round((score / maxScore) * 100)));
-    return { menu, score, maxScore, pct };
+    // AI Self-Learned Preference Bonus (+ / -)
+    let aiBonus = 0;
+    if (aiProfile.menuWeights && aiProfile.menuWeights[menu.name]) {
+      aiBonus += aiProfile.menuWeights[menu.name] * 1.2;
+    }
+    if (aiProfile.categoryWeights && aiProfile.categoryWeights[menu.cat]) {
+      aiBonus += aiProfile.categoryWeights[menu.cat] * 0.5;
+    }
+    if (answers.taste && answers.taste !== 'any' && aiProfile.tasteWeights && aiProfile.tasteWeights[answers.taste]) {
+      aiBonus += aiProfile.tasteWeights[answers.taste] * 0.4;
+    }
+    if (answers.type && aiProfile.typeWeights && aiProfile.typeWeights[answers.type]) {
+      aiBonus += aiProfile.typeWeights[answers.type] * 0.4;
+    }
+
+    // Clamped AI bonus between -2.5 and +3.0
+    aiBonus = Math.max(-2.5, Math.min(3.0, aiBonus));
+    score += aiBonus;
+
+    const isAIFavorite = (aiBonus >= 1.0);
+
+    const pct = Math.min(100, Math.max(45, Math.round((score / maxScore) * 100)));
+    return { menu, score, maxScore, pct, isAIFavorite };
   });
 
-  // 점수 내림차순 정렬 + 동점 시 무작위 셔플
   scored.sort((a, b) => b.score - a.score || Math.random() - 0.5);
 
   return scored.slice(0, 3);
@@ -962,17 +1094,18 @@ let lastTop3 = [];
 function renderResult(top3) {
   lastTop3 = top3;
 
-  // Mode badge
   const modeLabels = { general: '🍱 일반 모드 추천', diet: '🥗 다이어트 모드 추천', health: '🥣 건강/회복식 추천' };
   document.getElementById('res-mode-badge').textContent = modeLabels[selectedMode] || '🍱 일반 모드 추천';
 
-  // Menu cards
   const wrap = document.getElementById('menu-cards');
   wrap.innerHTML = '';
   top3.forEach((item, i) => {
     const card = document.createElement('div');
     card.className = 'menu-card';
     card.style.animationDelay = (i * 0.15) + 's';
+    
+    const aiBadge = item.isAIFavorite ? `<span class="mc-ai-badge">🤖 AI 취향저격</span>` : '';
+
     card.innerHTML = `
       <div class="mc-header">
         <span class="mc-rank">${i + 1}</span>
@@ -980,6 +1113,7 @@ function renderResult(top3) {
         <div class="mc-info">
           <span class="mc-name">${item.menu.name}</span>
           <span class="mc-cat">${item.menu.cat}</span>
+          ${aiBadge}
         </div>
       </div>
       <p class="mc-desc">${item.menu.desc}</p>
@@ -987,15 +1121,12 @@ function renderResult(top3) {
     wrap.appendChild(card);
   });
 
-  // Reason
   const reasonBox = document.getElementById('reason-box');
   reasonBox.innerHTML = `<h3>💡 이런 이유로 추천했어요</h3><p>${buildReason()}</p>`;
 
-  // Answer summary
   const sumBox = document.getElementById('summary-box');
   const tags = [];
   
-  // 모드 및 실시간 날씨 태그
   tags.push(`<span class="stag mode-tag">${modeLabels[selectedMode]}</span>`);
   tags.push(`<span class="stag weather-tag">${weatherInfo.icon} ${weatherInfo.text}</span>`);
 
@@ -1008,11 +1139,114 @@ function renderResult(top3) {
 
   sumBox.innerHTML = `<h3>📋 나의 답변 및 조건 요약</h3><div class="summary-tags">${tags.join('')}</div>`;
 
-  // Native share button
+  // Init Rating Box
+  initRatingUI();
+
   if (navigator.share) {
     document.getElementById('btn-native-share').style.display = '';
   }
   document.getElementById('share-panel').classList.remove('open');
+}
+
+/* ================================================================
+   5-STAR RATING & AI LEARNING FEEDBACK
+   ================================================================ */
+const STAR_FEEDBACK_TEXTS = {
+    1: '😢 아쉬워요 (다음에는 이 메뉴를 제외할게요)',
+    2: '🙁 별로예요 (취향에 맞게 조정할게요)',
+    3: '😐 보통이에요 (무난한 메뉴네요)',
+    4: '😊 마음에 들어요! (다음에도 비슷한 메뉴를 우선 추천할게요)',
+    5: '🤩 최고예요! (당신의 취향을 AI가 완벽하게 학습했어요!)'
+};
+
+function initRatingUI() {
+    currentSessionRating = null;
+    const profile = getAIProfile();
+    const count = profile.totalRatings || 0;
+
+    document.querySelectorAll('.star-btn').forEach(btn => {
+        btn.classList.remove('active', 'hovered');
+    });
+    document.getElementById('rating-label').textContent = '별점을 선택해 주세요';
+
+    const statusBadge = document.getElementById('ai-status-badge');
+    if (count > 0) {
+        statusBadge.textContent = `🤖 AI 취향 데이터: 총 ${count}회 학습됨`;
+    } else {
+        statusBadge.textContent = `🤖 AI 취향 학습 활성화됨`;
+    }
+}
+
+function hoverStar(val) {
+    if (currentSessionRating !== null) return;
+    document.querySelectorAll('.star-btn').forEach(btn => {
+        const star = parseInt(btn.dataset.star, 10);
+        btn.classList.toggle('hovered', star <= val);
+    });
+    document.getElementById('rating-label').textContent = STAR_FEEDBACK_TEXTS[val] || '';
+}
+
+function resetStarHover() {
+    if (currentSessionRating !== null) return;
+    document.querySelectorAll('.star-btn').forEach(btn => {
+        btn.classList.remove('hovered');
+    });
+    document.getElementById('rating-label').textContent = '별점을 선택해 주세요';
+}
+
+function rateResult(stars) {
+    currentSessionRating = stars;
+
+    document.querySelectorAll('.star-btn').forEach(btn => {
+        const star = parseInt(btn.dataset.star, 10);
+        btn.classList.toggle('active', star <= stars);
+        btn.classList.remove('hovered');
+    });
+    document.getElementById('rating-label').textContent = `✨ ${STAR_FEEDBACK_TEXTS[stars]}`;
+
+    // AI Profile Update
+    const profile = getAIProfile();
+    profile.totalRatings = (profile.totalRatings || 0) + 1;
+
+    // Delta: 5->+1.6, 4->+0.8, 3->0, 2->-0.8, 1->-1.6
+    const delta = (stars - 3) * 0.8;
+
+    if (lastTop3 && lastTop3.length > 0) {
+        // 1st item gets full delta
+        const top1Name = lastTop3[0].menu.name;
+        profile.menuWeights[top1Name] = (profile.menuWeights[top1Name] || 0) + delta;
+
+        // 2nd & 3rd items get partial delta
+        for (let i = 1; i < lastTop3.length; i++) {
+            const mName = lastTop3[i].menu.name;
+            profile.menuWeights[mName] = (profile.menuWeights[mName] || 0) + (delta * 0.4);
+        }
+
+        // Category & tags preference
+        const top1Cat = lastTop3[0].menu.cat;
+        if (top1Cat) {
+            profile.categoryWeights[top1Cat] = (profile.categoryWeights[top1Cat] || 0) + (delta * 0.3);
+        }
+        if (answers.taste && answers.taste !== 'any') {
+            profile.tasteWeights[answers.taste] = (profile.tasteWeights[answers.taste] || 0) + (delta * 0.3);
+        }
+        if (answers.type) {
+            profile.typeWeights[answers.type] = (profile.typeWeights[answers.type] || 0) + (delta * 0.3);
+        }
+    }
+
+    saveAIProfile(profile);
+
+    const statusBadge = document.getElementById('ai-status-badge');
+    statusBadge.textContent = `🤖 AI 취향 데이터: 총 ${profile.totalRatings}회 학습 완료!`;
+
+    if (stars >= 4) {
+        showToast(`⭐ ${stars}점 평가 감사합니다! 취향이 AI 엔진에 학습되었어요.`);
+    } else if (stars <= 2) {
+        showToast(`⭐ 피드백 반영 완료! 다음에는 이와 다른 음식을 추천할게요.`);
+    } else {
+        showToast(`⭐ 평가가 성공적으로 기록되었습니다.`);
+    }
 }
 
 /* ================================================================
@@ -1021,14 +1255,12 @@ function renderResult(top3) {
 function buildReason() {
   const parts = [];
 
-  // 모드별 수식어
   if (selectedMode === 'diet') {
     parts.push('칼로리 부담 없는 가벼운 식단을 위해');
   } else if (selectedMode === 'health') {
     parts.push('속을 편안하게 달래줄 부드러운 음식을 위해');
   }
 
-  // 실시간 날씨 반영
   if (detectedWeather.includes('rainy')) {
     parts.push('비 오고 흐린 날씨에 생각나는');
   } else if (detectedWeather.includes('cold')) {
@@ -1039,15 +1271,12 @@ function buildReason() {
     parts.push(`쾌적한 날씨(${weatherInfo.temp}°C)에 기분 좋게 즐길 수 있는`);
   }
 
-  // 기분
   const mMap = { stressed:'스트레스 해소에 어울리는', happy:'기분 좋은 날 더욱 활력을 더해줄', normal:'편안하게 한 끼를 채워줄', sad:'마음을 따스하게 위로해줄' };
   if (answers.mood && mMap[answers.mood]) parts.push(mMap[answers.mood]);
 
-  // 맛
   const tMap = { spicy:'매콤하고 칼칼한', savory:'고소하고 담백한', sweet:'달콤하고 부드러운', sour:'새콤상큼한', salty:'감칠맛 도는' };
   if (answers.taste && tMap[answers.taste]) parts.push(tMap[answers.taste]);
 
-  // 형태
   const tyMap = { soup:'국물 요리', rice:'밥 요리', noodle:'면 요리', meat:'단백질 요리', light:'가벼운 음식' };
   if (answers.type && tyMap[answers.type]) parts.push(tyMap[answers.type] + '를');
 
@@ -1070,6 +1299,7 @@ function buildReason() {
 function restart() {
   currentQ = 0;
   Object.keys(answers).forEach(k => delete answers[k]);
+  currentSessionRating = null;
   const panel = document.getElementById('share-panel');
   if (panel) panel.classList.remove('open');
   showScreen('intro');

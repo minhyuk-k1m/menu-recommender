@@ -55,22 +55,100 @@
             50%     { transform: scale(1.08); }
         }
 
-        /* === Intro === */
+        /* === Intro Card === */
         .intro-card {
             background: var(--card-bg);
             border-radius: 24px;
-            padding: 48px 32px;
+            padding: 38px 28px;
             text-align: center;
             box-shadow: var(--shadow);
         }
-        .intro-emoji { font-size: 80px; display: block; margin-bottom: 20px; animation: float 3s ease-in-out infinite; }
+        .intro-emoji { font-size: 72px; display: block; margin-bottom: 14px; animation: float 3s ease-in-out infinite; }
         .intro-title {
-            font-size: 28px; font-weight: 900; margin-bottom: 10px;
+            font-size: 28px; font-weight: 900; margin-bottom: 8px;
             background: linear-gradient(135deg, #f5576c, #ff6348);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-        .intro-desc { font-size: 15px; color: var(--text-light); line-height: 1.7; margin-bottom: 32px; }
+        .intro-desc { font-size: 14px; color: var(--text-light); line-height: 1.6; margin-bottom: 22px; }
+
+        /* Weather Badge */
+        .weather-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #f1f3f5;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #495057;
+            margin-bottom: 22px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .weather-badge:hover {
+            background: #e9ecef;
+        }
+
+        /* Mode Selection */
+        .mode-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 12px;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .mode-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 26px;
+        }
+        .mode-btn {
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 16px;
+            padding: 14px 16px;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            font-family: inherit;
+        }
+        .mode-btn:hover {
+            border-color: var(--primary);
+            background: #fffafa;
+            transform: translateY(-2px);
+        }
+        .mode-btn.active {
+            border-color: var(--primary);
+            background: linear-gradient(135deg, #fff5f5, #ffebee);
+            box-shadow: 0 4px 14px rgba(245, 87, 108, 0.18);
+        }
+        .mode-icon {
+            font-size: 28px;
+            flex-shrink: 0;
+        }
+        .mode-info h4 {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 2px;
+        }
+        .mode-btn.active .mode-info h4 {
+            color: var(--primary);
+        }
+        .mode-info p {
+            font-size: 12px;
+            color: var(--text-light);
+            line-height: 1.35;
+        }
 
         .btn-start {
             background: linear-gradient(135deg, #f5576c, #ff6348);
@@ -79,6 +157,7 @@
             cursor: pointer; transition: all .3s;
             box-shadow: 0 8px 25px rgba(245,87,108,.4);
             font-family: inherit;
+            width: 100%;
         }
         .btn-start:hover { transform: translateY(-3px); box-shadow: 0 12px 35px rgba(245,87,108,.5); }
 
@@ -94,7 +173,17 @@
         .progress-bar { height: 8px; background: #eee; border-radius: 10px; overflow: hidden; }
         .progress-fill { height: 100%; background: linear-gradient(90deg, #f5576c, #ff6348, #ffa502); border-radius: 10px; transition: width .45s ease; }
 
-        .q-emoji { font-size: 44px; text-align: center; display: block; margin-bottom: 14px; }
+        .q-header-tag {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--primary);
+            background: var(--primary-light);
+            padding: 4px 10px;
+            border-radius: 12px;
+            margin-bottom: 8px;
+        }
+        .q-emoji { font-size: 44px; text-align: center; display: block; margin-bottom: 12px; }
         .q-text  { font-size: 19px; font-weight: 700; text-align: center; margin-bottom: 22px; line-height: 1.45; }
 
         .options { display: flex; flex-direction: column; gap: 10px; }
@@ -132,8 +221,18 @@
             box-shadow: var(--shadow);
             text-align: center;
         }
+        .result-mode-badge {
+            display: inline-block;
+            font-size: 13px;
+            font-weight: 700;
+            color: #fff;
+            background: linear-gradient(135deg, #f5576c, #ff6348);
+            padding: 4px 14px;
+            border-radius: 20px;
+            margin-bottom: 8px;
+        }
         .result-title { font-size: 22px; font-weight: 900; margin-bottom: 6px; }
-        .result-sub   { font-size: 14px; color: var(--text-light); margin-bottom: 26px; }
+        .result-sub   { font-size: 14px; color: var(--text-light); margin-bottom: 22px; }
 
         .menu-cards { display: flex; flex-direction: column; gap: 14px; margin-bottom: 24px; }
         .menu-card {
@@ -171,6 +270,18 @@
         .stag {
             display: inline-block; font-size: 12px; padding: 4px 12px;
             background: #fff; border: 1px solid #e9ecef; border-radius: 20px; color: var(--text-light);
+        }
+        .stag.mode-tag {
+            background: #fff0f2;
+            border-color: #fcc2d7;
+            color: #d6336c;
+            font-weight: 700;
+        }
+        .stag.weather-tag {
+            background: #e7f5ff;
+            border-color: #a5d8ff;
+            color: #1c7ed6;
+            font-weight: 600;
         }
 
         .reason-box {
@@ -250,10 +361,12 @@
             body { padding: 12px; }
             .intro-card,.question-card,.result-card { padding: 24px 18px; }
             .intro-title { font-size: 24px; }
-            .intro-emoji { font-size: 64px; }
+            .intro-emoji { font-size: 58px; }
             .q-text { font-size: 17px; }
             .option-btn { padding: 12px 14px; font-size: 14px; }
             .share-grid { grid-template-columns: repeat(2, 1fr); }
+            .mode-btn { padding: 12px 14px; }
+            .mode-icon { font-size: 24px; }
         }
     </style>
 </head>
@@ -266,13 +379,45 @@
             <span class="intro-emoji">🤔</span>
             <h1 class="intro-title">오늘 뭐 먹지?</h1>
             <p class="intro-desc">
-                매일 반복되는 메뉴 고민, 이제 그만!<br>
-                간단한 질문 <strong>9개</strong>에 답하면<br>
-                딱 맞는 메뉴를 추천해 드릴게요 🍽️
+                매일 반복되는 식사 메뉴 고민, 이제 끝!<br>
+                취향과 상황에 딱 맞는 메뉴를 추천해 드려요 🍽️
             </p>
-            <button class="btn-start" onclick="startQuiz()">시작하기 →</button>
+
+            <!-- Real-time Weather Badge -->
+            <div class="weather-badge" id="weather-badge" onclick="requestLocation()" title="클릭하여 현재 위치 날씨 새로고침">
+                <span id="weather-icon">🌤️</span>
+                <span id="weather-text">날씨 정보 불러오는 중...</span>
+            </div>
+
+            <!-- Mode Selection -->
+            <div class="mode-title">🎯 추천 모드를 선택해주세요:</div>
+            <div class="mode-grid">
+                <button type="button" class="mode-btn active" data-mode="general" onclick="selectMode('general')">
+                    <span class="mode-icon">🍱</span>
+                    <div class="mode-info">
+                        <h4>일반 모드</h4>
+                        <p>오늘 땡기는 맛있는 일상 식사 메뉴 추천</p>
+                    </div>
+                </button>
+                <button type="button" class="mode-btn" data-mode="diet" onclick="selectMode('diet')">
+                    <span class="mode-icon">🥗</span>
+                    <div class="mode-info">
+                        <h4>다이어트 모드</h4>
+                        <p>저칼로리 & 고단백! 가볍고 건강한 식단</p>
+                    </div>
+                </button>
+                <button type="button" class="mode-btn" data-mode="health" onclick="selectMode('health')">
+                    <span class="mode-icon">🥣</span>
+                    <div class="mode-info">
+                        <h4>건강 / 회복식 모드</h4>
+                        <p>속이 편하고 소화 잘 되는 부드러운 힐링 메뉴</p>
+                    </div>
+                </button>
+            </div>
+
+            <button class="btn-start" onclick="startQuiz()">질문 시작하기 →</button>
         </div>
-        <p style="margin-top:16px; font-size:11px; font-weight:500; color:rgba(255,255,255,0.5); letter-spacing:0.12em; text-align:center;">MADE BY MINHYUK KIM</p>
+        <p style="margin-top:16px; font-size:11px; font-weight:500; color:rgba(255,255,255,0.6); letter-spacing:0.12em; text-align:center;">MADE BY MINHYUK KIM</p>
     </div>
 
     <!-- ===== QUESTION ===== -->
@@ -284,6 +429,9 @@
                     <span id="prog-pct"></span>
                 </div>
                 <div class="progress-bar"><div class="progress-fill" id="prog-fill"></div></div>
+            </div>
+            <div style="text-align: center;">
+                <span class="q-header-tag" id="q-mode-tag">🍱 일반 모드</span>
             </div>
             <span class="q-emoji" id="q-emoji"></span>
             <h2 class="q-text" id="q-text"></h2>
@@ -298,16 +446,17 @@
     <div id="screen-loading" class="screen">
         <div class="loading-card">
             <span class="loading-emoji">🍳</span>
-            <p class="loading-text">메뉴를 고르는 중...</p>
-            <p class="loading-sub">당신의 취향을 분석하고 있어요!</p>
+            <p class="loading-text">최적의 메뉴를 찾는 중...</p>
+            <p class="loading-sub" id="loading-sub-text">실시간 날씨와 모드별 맞춤 분석을 진행하고 있어요!</p>
         </div>
     </div>
 
     <!-- ===== RESULT ===== -->
     <div id="screen-result" class="screen">
         <div class="result-card">
+            <span class="result-mode-badge" id="res-mode-badge">🍱 일반 모드 추천</span>
             <h2 class="result-title">🎉 오늘의 추천 메뉴</h2>
-            <p class="result-sub">당신의 답변을 바탕으로 골라봤어요!</p>
+            <p class="result-sub">당신의 성향과 현재 날씨를 종합하여 골랐어요!</p>
             <div class="menu-cards" id="menu-cards"></div>
             <div class="reason-box" id="reason-box"></div>
             <div class="summary-box" id="summary-box"></div>
@@ -365,9 +514,140 @@
 
 <script>
 /* ================================================================
-   QUESTIONS
+   GLOBAL STATE & MODE
+   ================================================================ */
+let selectedMode = 'general'; // 'general' | 'diet' | 'health'
+let currentQ = 0;
+const answers = {};
+let detectedWeather = ['cool']; // 'hot' | 'cool' | 'cold' | 'rainy'
+let weatherInfo = { temp: 22, text: '쾌적한 날씨', icon: '🌤️' };
+
+/* ================================================================
+   WEATHER & GEOLOCATION SERVICE (Open-Meteo API)
+   ================================================================ */
+function initWeather() {
+    if ("geolocation" in navigator) {
+        navigator.geolocation.getCurrentPosition(
+            (pos) => {
+                fetchWeather(pos.coords.latitude, pos.coords.longitude, true);
+            },
+            (err) => {
+                // 권한 거부 또는 실패 시 서울 기본 좌표 기준 날씨 가져오기
+                fetchWeather(37.5665, 126.9780, false);
+            },
+            { timeout: 8000 }
+        );
+    } else {
+        fetchWeather(37.5665, 126.9780, false);
+    }
+}
+
+async function fetchWeather(lat, lon, hasLocation) {
+    try {
+        const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`);
+        if (!res.ok) throw new Error("Weather fetch failed");
+        const data = await res.json();
+        const cw = data.current_weather;
+        const temp = Math.round(cw.temperature);
+        const code = cw.weathercode;
+
+        let icon = '🌤️';
+        let desc = '맑음/쾌적';
+        const tags = [];
+
+        // 온도 태그
+        if (temp >= 28) {
+            tags.push('hot');
+        } else if (temp <= 10) {
+            tags.push('cold');
+        } else {
+            tags.push('cool');
+        }
+
+        // WMO 날씨 코드 매핑
+        if (code >= 51 && code <= 67 || (code >= 80 && code <= 82) || (code >= 95 && code <= 99)) {
+            tags.push('rainy');
+            icon = '🌧️';
+            desc = '비/흐림';
+        } else if (code >= 71 && code <= 77 || code === 85 || code === 86) {
+            tags.push('cold');
+            icon = '❄️';
+            desc = '눈';
+        } else if (code === 0 || code === 1) {
+            icon = temp >= 28 ? '🔥' : '☀️';
+            desc = '맑음';
+        } else if (code === 2 || code === 3) {
+            icon = '⛅';
+            desc = '구름 조금';
+        } else {
+            icon = '🌥️';
+            desc = '흐림';
+        }
+
+        detectedWeather = tags;
+        weatherInfo = {
+            temp: temp,
+            text: `${temp}°C ${desc}`,
+            icon: icon,
+            isExact: hasLocation
+        };
+
+        updateWeatherBadge();
+    } catch (e) {
+        // Fallback default
+        detectedWeather = ['cool'];
+        weatherInfo = { temp: 22, text: '22°C 쾌적함', icon: '🌤️', isExact: false };
+        updateWeatherBadge();
+    }
+}
+
+function updateWeatherBadge() {
+    const badge = document.getElementById('weather-badge');
+    const iconEl = document.getElementById('weather-icon');
+    const textEl = document.getElementById('weather-text');
+    if (badge && iconEl && textEl) {
+        iconEl.textContent = weatherInfo.icon;
+        textEl.textContent = `📍 현재 날씨: ${weatherInfo.text}` + (weatherInfo.isExact ? ' (위치 감지)' : '');
+    }
+}
+
+function requestLocation() {
+    if ("geolocation" in navigator) {
+        showToast('📍 현재 위치의 실시간 날씨를 조회합니다...');
+        navigator.geolocation.getCurrentPosition(
+            (pos) => {
+                fetchWeather(pos.coords.latitude, pos.coords.longitude, true);
+                showToast('✅ 현재 위치의 날씨가 성공적으로 반영되었습니다!');
+            },
+            (err) => {
+                showToast('ℹ️ 브라우저 위치 권한을 허용하시면 더 정확한 날씨가 반영돼요.');
+            }
+        );
+    }
+}
+
+/* ================================================================
+   MODE SELECTION
+   ================================================================ */
+function selectMode(mode) {
+    selectedMode = mode;
+    document.querySelectorAll('.mode-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.mode === mode);
+    });
+}
+
+/* ================================================================
+   QUESTIONS (8 Questions - Gender is #1, Taste includes 'Any', Budget updated)
    ================================================================ */
 const QUESTIONS = [
+  {
+    id: 'gender', emoji: '🧑',
+    text: '성별을 알려주세요!',
+    options: [
+      { value: 'male',   emoji: '👨', label: '남성' },
+      { value: 'female', emoji: '👩', label: '여성' }
+    ]
+  },
   {
     id: 'meal', emoji: '🕐',
     text: '지금 어떤 식사를 하려고 하나요?',
@@ -376,16 +656,6 @@ const QUESTIONS = [
       { value: 'lunch',     emoji: '☀️', label: '점심 식사' },
       { value: 'dinner',    emoji: '🌙', label: '저녁 식사' },
       { value: 'snack',     emoji: '🌃', label: '야식 / 간식' }
-    ]
-  },
-  {
-    id: 'weather', emoji: '🌤️',
-    text: '지금 밖의 날씨는 어떤가요?',
-    options: [
-      { value: 'hot',   emoji: '🔥', label: '덥고 습해요 (한여름)' },
-      { value: 'cool',  emoji: '🍃', label: '선선하고 쾌적해요' },
-      { value: 'cold',  emoji: '❄️', label: '쌀쌀하거나 추워요' },
-      { value: 'rainy', emoji: '🌧️', label: '비가 오거나 흐려요' }
     ]
   },
   {
@@ -399,18 +669,10 @@ const QUESTIONS = [
     ]
   },
   {
-    id: 'gender', emoji: '🧑',
-    text: '성별을 알려주세요!',
-    options: [
-      { value: 'male',   emoji: '👨', label: '남성' },
-      { value: 'female', emoji: '👩', label: '여성' }
-    ]
-  },
-  {
     id: 'hunger', emoji: '🍽️',
     text: '얼마나 배가 고프세요?',
     options: [
-      { value: 'very',     emoji: '🤤', label: '매우 배고파요 (굶은 상태)' },
+      { value: 'very',     emoji: '🤤', label: '매우 배고파요 (든든하게!)' },
       { value: 'moderate', emoji: '😋', label: '적당히 배고파요' },
       { value: 'light',    emoji: '🤏', label: '살짝 출출한 정도예요' },
       { value: 'bored',    emoji: '😶', label: '배는 안 고픈데 입이 심심해요' }
@@ -424,7 +686,8 @@ const QUESTIONS = [
       { value: 'savory', emoji: '🥜', label: '고소하고 담백한 맛' },
       { value: 'sweet',  emoji: '🍰', label: '달콤하거나 부드러운 맛' },
       { value: 'sour',   emoji: '🍋', label: '새콤하고 상큼한 맛' },
-      { value: 'salty',  emoji: '🧂', label: '짭짤하고 감칠맛 나는 맛' }
+      { value: 'salty',  emoji: '🧂', label: '짭짤하고 감칠맛 나는 맛' },
+      { value: 'any',    emoji: '🤔', label: '잘 모르겠어요 / 아무거나' }
     ]
   },
   {
@@ -434,7 +697,7 @@ const QUESTIONS = [
       { value: 'soup',   emoji: '🍲', label: '국물이 있는 음식' },
       { value: 'rice',   emoji: '🍚', label: '밥과 함께 먹는 음식' },
       { value: 'noodle', emoji: '🍜', label: '면 종류' },
-      { value: 'meat',   emoji: '🥩', label: '고기 / 구이류' },
+      { value: 'meat',   emoji: '🥩', label: '고기 / 단백질류' },
       { value: 'light',  emoji: '🥗', label: '가볍게 먹는 것' }
     ]
   },
@@ -452,112 +715,91 @@ const QUESTIONS = [
     id: 'budget', emoji: '💰',
     text: '오늘 식사 예산은 어느 정도인가요?',
     options: [
-      { value: 'cheap',    emoji: '💵', label: '저렴하게 (1만원 이하)' },
-      { value: 'moderate', emoji: '💳', label: '보통 (1~2만원)' },
-      { value: 'nice',     emoji: '💎', label: '좀 여유 있게 (2~3만원)' },
-      { value: 'luxury',   emoji: '👑', label: '오늘은 플렉스! (3만원 이상)' }
+      { value: 'cheap',    emoji: '💵', label: '저렴하게 (2만원 이내)' },
+      { value: 'moderate', emoji: '💳', label: '보통 (2~5만원)' },
+      { value: 'nice',     emoji: '💎', label: '좀 여유 있게 (5~10만원)' },
+      { value: 'luxury',   emoji: '👑', label: '오늘은 플렉스! (10만원 이상)' }
     ]
   }
 ];
 
 /* ================================================================
-   MENU DATABASE  (~70 items)
+   MENU DATABASE (일반식 + 다이어트식 + 건강/회복식)
    ================================================================ */
 const MENUS = [
-  // ── 한식 ──
-  { name:'김치찌개',   emoji:'🍲', cat:'한식', desc:'얼큰하고 칼칼한 한국의 소울푸드', tags:{ meal:['lunch','dinner'], weather:['cold','rainy'], mood:['stressed','normal'], gender:['male','female'], hunger:['moderate','very'], taste:['spicy','savory'], type:['soup','rice'], people:['solo','duo','group','coworker'], budget:['cheap','moderate'] }},
-  { name:'된장찌개',   emoji:'🫕', cat:'한식', desc:'구수한 된장 향이 가득한 따뜻한 한 끼', tags:{ meal:['lunch','dinner'], weather:['cold','rainy','cool'], mood:['normal','sad'], gender:['male','female'], hunger:['moderate','very'], taste:['savory'], type:['soup','rice'], people:['solo','duo','group','coworker'], budget:['cheap','moderate'] }},
-  { name:'순두부찌개', emoji:'🍲', cat:'한식', desc:'부드러운 순두부에 매콤한 양념이 어우러진', tags:{ meal:['lunch','dinner'], weather:['cold','rainy'], mood:['stressed','normal','sad'], gender:['male','female'], hunger:['moderate','very'], taste:['spicy','savory'], type:['soup'], people:['solo','duo','coworker'], budget:['cheap','moderate'] }},
-  { name:'비빔밥',     emoji:'🍚', cat:'한식', desc:'형형색색 나물과 고추장의 조화', tags:{ meal:['lunch','dinner'], weather:['hot','cool','cold','rainy'], mood:['normal','happy'], gender:['male','female'], hunger:['moderate'], taste:['spicy','savory'], type:['rice'], people:['solo','coworker'], budget:['cheap','moderate'] }},
-  { name:'불고기',     emoji:'🥩', cat:'한식', desc:'달콤 짭짤한 양념에 재운 부드러운 소고기', tags:{ meal:['lunch','dinner'], weather:['cool','cold'], mood:['happy','normal'], gender:['male','female'], hunger:['moderate','very'], taste:['sweet','savory'], type:['meat','rice'], people:['duo','group'], budget:['moderate','nice'] }},
-  { name:'삼겹살',     emoji:'🥓', cat:'한식', desc:'두툼한 삼겹살을 구워 쌈에 싸 먹는 즐거움', tags:{ meal:['dinner'], weather:['cool','cold'], mood:['happy','stressed'], gender:['male','female'], hunger:['very','moderate'], taste:['savory','salty'], type:['meat'], people:['duo','group','coworker'], budget:['moderate','nice'] }},
-  { name:'돼지국밥',   emoji:'🍜', cat:'한식', desc:'진하게 우려낸 돼지뼈 국물에 밥 한 그릇 뚝딱', tags:{ meal:['breakfast','lunch','dinner'], weather:['cold','rainy'], mood:['stressed','normal'], gender:['male'], hunger:['very','moderate'], taste:['savory','salty'], type:['soup','rice'], people:['solo','coworker'], budget:['cheap'] }},
-  { name:'칼국수',     emoji:'🍜', cat:'한식', desc:'쫄깃한 면발에 시원한 국물이 일품', tags:{ meal:['lunch','dinner'], weather:['cold','rainy','cool'], mood:['normal','sad'], gender:['male','female'], hunger:['moderate'], taste:['savory'], type:['noodle','soup'], people:['solo','duo','coworker'], budget:['cheap','moderate'] }},
-  { name:'물냉면',     emoji:'🍜', cat:'한식', desc:'시원한 육수에 쫄깃한 면, 더위를 날리는 한 그릇', tags:{ meal:['lunch','dinner'], weather:['hot'], mood:['normal','happy'], gender:['male','female'], hunger:['moderate','light'], taste:['sour','savory'], type:['noodle'], people:['solo','duo','coworker'], budget:['moderate'] }},
-  { name:'비빔냉면',   emoji:'🌶️', cat:'한식', desc:'매콤 새콤한 양념에 비빈 시원한 냉면', tags:{ meal:['lunch','dinner'], weather:['hot'], mood:['stressed','happy'], gender:['male','female'], hunger:['moderate','light'], taste:['spicy','sour'], type:['noodle'], people:['solo','duo','coworker'], budget:['moderate'] }},
-  { name:'떡볶이',     emoji:'🍢', cat:'분식', desc:'매콤달콤 국민 간식, 쫄깃한 떡의 유혹', tags:{ meal:['lunch','dinner','snack'], weather:['hot','cool','cold','rainy'], mood:['stressed','happy'], gender:['female','male'], hunger:['light','moderate'], taste:['spicy','sweet'], type:['light'], people:['solo','duo','group'], budget:['cheap'] }},
-  { name:'김밥',       emoji:'🍙', cat:'분식', desc:'한 줄이면 든든! 언제 어디서나 간편하게', tags:{ meal:['breakfast','lunch','snack'], weather:['hot','cool','cold','rainy'], mood:['normal'], gender:['male','female'], hunger:['light','moderate'], taste:['savory'], type:['rice','light'], people:['solo','coworker'], budget:['cheap'] }},
-  { name:'제육볶음',   emoji:'🍖', cat:'한식', desc:'매콤한 돼지고기 볶음에 밥이 술술', tags:{ meal:['lunch','dinner'], weather:['hot','cool','cold','rainy'], mood:['stressed','normal'], gender:['male'], hunger:['very','moderate'], taste:['spicy','savory'], type:['rice','meat'], people:['solo','duo','coworker'], budget:['cheap','moderate'] }},
-  { name:'갈비탕',     emoji:'🍲', cat:'한식', desc:'보양식의 정석, 진한 갈비 국물', tags:{ meal:['lunch','dinner'], weather:['cold','rainy'], mood:['normal','sad'], gender:['male','female'], hunger:['moderate','very'], taste:['savory'], type:['soup','meat'], people:['solo','duo'], budget:['moderate','nice'] }},
-  { name:'삼계탕',     emoji:'🐔', cat:'한식', desc:'몸보신에 딱 좋은 한 마리 삼계탕', tags:{ meal:['lunch','dinner'], weather:['hot','cold'], mood:['sad','normal'], gender:['male','female'], hunger:['moderate','very'], taste:['savory'], type:['soup','meat'], people:['solo','duo'], budget:['moderate','nice'] }},
-  { name:'콩나물국밥', emoji:'🍚', cat:'한식', desc:'해장에 최고! 뜨끈한 콩나물국밥', tags:{ meal:['breakfast','lunch'], weather:['cold','rainy'], mood:['stressed','normal'], gender:['male'], hunger:['moderate','very'], taste:['savory','spicy'], type:['soup','rice'], people:['solo','coworker'], budget:['cheap'] }},
-  { name:'부대찌개',   emoji:'🫕', cat:'한식', desc:'라면사리에 햄, 소시지까지 가득한 푸짐한 찌개', tags:{ meal:['dinner'], weather:['cold','rainy'], mood:['happy','stressed'], gender:['male','female'], hunger:['very','moderate'], taste:['spicy','savory','salty'], type:['soup'], people:['duo','group','coworker'], budget:['moderate'] }},
-  { name:'감자탕',     emoji:'🍲', cat:'한식', desc:'뼈해장국의 감칠맛, 푸짐한 야식', tags:{ meal:['dinner','snack'], weather:['cold','rainy'], mood:['stressed','happy'], gender:['male'], hunger:['very'], taste:['spicy','savory'], type:['soup','meat'], people:['duo','group'], budget:['moderate'] }},
-  { name:'해물파전',   emoji:'🥞', cat:'한식', desc:'비 오는 날엔 역시 파전에 막걸리', tags:{ meal:['dinner','snack'], weather:['rainy'], mood:['happy','normal'], gender:['male','female'], hunger:['light','moderate'], taste:['savory'], type:['light'], people:['duo','group'], budget:['moderate'] }},
-  { name:'보쌈',       emoji:'🥬', cat:'한식', desc:'부드러운 수육에 아삭한 쌈, 완벽한 조합', tags:{ meal:['dinner'], weather:['cool','cold'], mood:['happy'], gender:['male','female'], hunger:['moderate','very'], taste:['savory'], type:['meat'], people:['duo','group'], budget:['moderate','nice'] }},
-  { name:'족발',       emoji:'🦶', cat:'한식', desc:'쫄깃 탱글한 족발, 야식의 왕', tags:{ meal:['dinner','snack'], weather:['hot','cool','cold','rainy'], mood:['happy','stressed'], gender:['male'], hunger:['very','moderate'], taste:['savory','salty'], type:['meat'], people:['duo','group'], budget:['moderate','nice'] }},
-  { name:'해장국',     emoji:'🥣', cat:'한식', desc:'속이 풀리는 뜨끈한 해장 한 그릇', tags:{ meal:['breakfast','lunch'], weather:['cold','rainy'], mood:['stressed','sad'], gender:['male'], hunger:['moderate','very'], taste:['spicy','savory'], type:['soup'], people:['solo','coworker'], budget:['cheap'] }},
-  { name:'설렁탕',     emoji:'🍲', cat:'한식', desc:'오래 우려낸 뽀얀 국물의 깊은 맛', tags:{ meal:['lunch','dinner'], weather:['cold','rainy'], mood:['normal','sad'], gender:['male','female'], hunger:['moderate','very'], taste:['savory'], type:['soup','rice'], people:['solo'], budget:['moderate'] }},
-  { name:'순대국',     emoji:'🍲', cat:'한식', desc:'든든한 순대와 내장이 가득, 서민의 보양식', tags:{ meal:['lunch','dinner'], weather:['cold','rainy'], mood:['normal','stressed'], gender:['male'], hunger:['very','moderate'], taste:['savory','salty'], type:['soup','rice'], people:['solo','coworker'], budget:['cheap'] }},
-  { name:'닭갈비',     emoji:'🍗', cat:'한식', desc:'매콤한 양념에 볶은 닭고기, 밥까지 볶아 마무리', tags:{ meal:['dinner'], weather:['cool','cold'], mood:['happy','stressed'], gender:['male','female'], hunger:['very','moderate'], taste:['spicy','savory'], type:['meat','rice'], people:['duo','group'], budget:['moderate'] }},
-  { name:'찜닭',       emoji:'🍗', cat:'한식', desc:'달콤 매콤한 간장 양념에 졸인 닭과 당면', tags:{ meal:['dinner'], weather:['cold','cool'], mood:['happy','normal'], gender:['male','female'], hunger:['very','moderate'], taste:['sweet','spicy','savory'], type:['meat'], people:['duo','group'], budget:['moderate'] }},
-  { name:'잡채',       emoji:'🍝', cat:'한식', desc:'형형색색 채소와 당면의 달콤한 조화', tags:{ meal:['lunch','dinner'], weather:['hot','cool','cold','rainy'], mood:['normal','happy'], gender:['female','male'], hunger:['moderate','light'], taste:['sweet','savory'], type:['rice','light'], people:['duo','group'], budget:['moderate'] }},
+  // ── [일반 모드] 한식 ──
+  { name:'김치찌개', emoji:'🍲', cat:'한식', desc:'얼큰하고 칼칼한 한국의 소울푸드', modes:['general'], tags:{ meal:['lunch','dinner'], weather:['cold','rainy'], mood:['stressed','normal'], gender:['male','female'], hunger:['moderate','very'], taste:['spicy','savory'], type:['soup','rice'], people:['solo','duo','group','coworker'], budget:['cheap'] }},
+  { name:'된장찌개', emoji:'🫕', cat:'한식', desc:'구수한 된장 향이 가득한 따뜻한 한 끼', modes:['general','health'], tags:{ meal:['lunch','dinner'], weather:['cold','rainy','cool'], mood:['normal','sad'], gender:['male','female'], hunger:['moderate','very'], taste:['savory'], type:['soup','rice'], people:['solo','duo','group','coworker'], budget:['cheap'] }},
+  { name:'순두부찌개', emoji:'🍲', cat:'한식', desc:'부드러운 순두부에 매콤한 양념이 어우러진 뚝배기', modes:['general'], tags:{ meal:['lunch','dinner'], weather:['cold','rainy'], mood:['stressed','normal','sad'], gender:['male','female'], hunger:['moderate','very'], taste:['spicy','savory'], type:['soup'], people:['solo','duo','coworker'], budget:['cheap'] }},
+  { name:'비빔밥', emoji:'🍚', cat:'한식', desc:'형형색색 나물과 고추장의 든든한 조화', modes:['general','diet'], tags:{ meal:['lunch','dinner'], weather:['hot','cool','cold','rainy'], mood:['normal','happy'], gender:['male','female'], hunger:['moderate'], taste:['spicy','savory'], type:['rice'], people:['solo','coworker'], budget:['cheap'] }},
+  { name:'불고기', emoji:'🥩', cat:'한식', desc:'달콤 짭짤한 양념에 재운 부드러운 소고기', modes:['general'], tags:{ meal:['lunch','dinner'], weather:['cool','cold'], mood:['happy','normal'], gender:['male','female'], hunger:['moderate','very'], taste:['sweet','savory'], type:['meat','rice'], people:['duo','group'], budget:['moderate'] }},
+  { name:'삼겹살', emoji:'🥓', cat:'한식', desc:'노릇하게 구운 삼겹살에 쌈과 구운 마늘', modes:['general'], tags:{ meal:['dinner'], weather:['cool','cold'], mood:['happy','stressed'], gender:['male','female'], hunger:['very','moderate'], taste:['savory','salty'], type:['meat'], people:['duo','group','coworker'], budget:['moderate','nice'] }},
+  { name:'돼지국밥', emoji:'🍜', cat:'한식', desc:'진하게 우려낸 돼지뼈 국물에 밥 한 그릇 뚝딱', modes:['general'], tags:{ meal:['breakfast','lunch','dinner'], weather:['cold','rainy'], mood:['stressed','normal'], gender:['male'], hunger:['very','moderate'], taste:['savory','salty'], type:['soup','rice'], people:['solo','coworker'], budget:['cheap'] }},
+  { name:'칼국수', emoji:'🍜', cat:'한식', desc:'쫄깃한 면발에 시원하고 깊은 해물/바지락 국물', modes:['general'], tags:{ meal:['lunch','dinner'], weather:['cold','rainy','cool'], mood:['normal','sad'], gender:['male','female'], hunger:['moderate'], taste:['savory'], type:['noodle','soup'], people:['solo','duo','coworker'], budget:['cheap'] }},
+  { name:'물냉면', emoji:'🍜', cat:'한식', desc:'살얼음 동동 띄운 시원한 육수에 쫄깃한 면발', modes:['general'], tags:{ meal:['lunch','dinner'], weather:['hot'], mood:['normal','happy'], gender:['male','female'], hunger:['moderate','light'], taste:['sour','savory'], type:['noodle'], people:['solo','duo','coworker'], budget:['cheap'] }},
+  { name:'비빔냉면', emoji:'🌶️', cat:'한식', desc:'매콤 새콤 달콤한 양념장에 비빈 시원한 냉면', modes:['general'], tags:{ meal:['lunch','dinner'], weather:['hot'], mood:['stressed','happy'], gender:['male','female'], hunger:['moderate','light'], taste:['spicy','sour'], type:['noodle'], people:['solo','duo','coworker'], budget:['cheap'] }},
+  { name:'제육볶음', emoji:'🍖', cat:'한식', desc:'불향 가득 매콤달콤한 제육에 밥이 술술', modes:['general'], tags:{ meal:['lunch','dinner'], weather:['hot','cool','cold','rainy'], mood:['stressed','normal'], gender:['male'], hunger:['very','moderate'], taste:['spicy','savory'], type:['rice','meat'], people:['solo','duo','coworker'], budget:['cheap'] }},
+  { name:'갈비탕', emoji:'🍲', cat:'한식', desc:'푸짐한 소갈비와 맑고 깊은 국물의 보양식', modes:['general','health'], tags:{ meal:['lunch','dinner'], weather:['cold','rainy'], mood:['normal','sad'], gender:['male','female'], hunger:['moderate','very'], taste:['savory'], type:['soup','meat'], people:['solo','duo'], budget:['cheap','moderate'] }},
+  { name:'삼계탕', emoji:'🐔', cat:'한식', desc:'인삼과 찹쌀을 품은 닭 한 마리 원기회복식', modes:['general','health'], tags:{ meal:['lunch','dinner'], weather:['hot','cold'], mood:['sad','normal'], gender:['male','female'], hunger:['moderate','very'], taste:['savory'], type:['soup','meat'], people:['solo','duo'], budget:['cheap','moderate'] }},
+  { name:'부대찌개', emoji:'🫕', cat:'한식', desc:'햄, 소시지, 라면사리 가득 보글보글 찌개', modes:['general'], tags:{ meal:['dinner','lunch'], weather:['cold','rainy'], mood:['happy','stressed'], gender:['male','female'], hunger:['very','moderate'], taste:['spicy','savory','salty'], type:['soup'], people:['duo','group','coworker'], budget:['cheap','moderate'] }},
+  { name:'감자탕', emoji:'🍲', cat:'한식', desc:'푸짐한 등뼈와 우거지, 들깨가루의 진한 감칠맛', modes:['general'], tags:{ meal:['dinner','snack'], weather:['cold','rainy'], mood:['stressed','happy'], gender:['male'], hunger:['very'], taste:['spicy','savory'], type:['soup','meat'], people:['duo','group'], budget:['moderate'] }},
+  { name:'보쌈', emoji:'🥬', cat:'한식', desc:'야들야들 수육과 아삭한 무말랭이 보쌈김치', modes:['general','diet'], tags:{ meal:['dinner'], weather:['cool','cold'], mood:['happy'], gender:['male','female'], hunger:['moderate','very'], taste:['savory'], type:['meat'], people:['duo','group'], budget:['moderate','nice'] }},
+  { name:'족발', emoji:'🦶', cat:'한식', desc:'콜라겐 가득 쫄깃 야들한 야식의 대명사', modes:['general'], tags:{ meal:['dinner','snack'], weather:['hot','cool','cold','rainy'], mood:['happy','stressed'], gender:['male'], hunger:['very','moderate'], taste:['savory','salty'], type:['meat'], people:['duo','group'], budget:['moderate'] }},
+  { name:'순대국', emoji:'🍲', cat:'한식', desc:'머릿고기와 순대가 푸짐하게 든 든든한 뚝배기', modes:['general'], tags:{ meal:['lunch','dinner'], weather:['cold','rainy'], mood:['normal','stressed'], gender:['male'], hunger:['very','moderate'], taste:['savory','salty'], type:['soup','rice'], people:['solo','coworker'], budget:['cheap'] }},
+  { name:'닭갈비', emoji:'🍗', cat:'한식', desc:'철판에 매콤하게 볶아 치즈 얹고 볶음밥까지', modes:['general'], tags:{ meal:['dinner'], weather:['cool','cold'], mood:['happy','stressed'], gender:['male','female'], hunger:['very','moderate'], taste:['spicy','savory'], type:['meat','rice'], people:['duo','group'], budget:['cheap','moderate'] }},
+  { name:'한우 오마카세', emoji:'🥩', cat:'한식', desc:'최상급 한우의 다양한 특수부위 코스 요리', modes:['general'], tags:{ meal:['dinner'], weather:['cool','cold','hot'], mood:['happy'], gender:['male','female'], hunger:['very','moderate'], taste:['savory'], type:['meat'], people:['duo','group'], budget:['luxury'] }},
 
-  // ── 중식 ──
-  { name:'짜장면',     emoji:'🍜', cat:'중식', desc:'달콤한 춘장 소스에 비빈 국민 면요리', tags:{ meal:['lunch','dinner'], weather:['hot','cool','cold','rainy'], mood:['normal'], gender:['male','female'], hunger:['moderate'], taste:['savory','sweet'], type:['noodle'], people:['solo','duo','coworker'], budget:['cheap','moderate'] }},
-  { name:'짬뽕',       emoji:'🍜', cat:'중식', desc:'얼큰한 해물 국물에 면이 쏙, 칼칼한 한 그릇', tags:{ meal:['lunch','dinner'], weather:['cold','rainy'], mood:['stressed','normal'], gender:['male'], hunger:['very','moderate'], taste:['spicy','savory'], type:['noodle','soup'], people:['solo','duo','coworker'], budget:['cheap','moderate'] }},
-  { name:'탕수육',     emoji:'🍖', cat:'중식', desc:'바삭한 튀김옷에 새콤달콤한 소스 (부먹? 찍먹?)', tags:{ meal:['lunch','dinner'], weather:['hot','cool','cold','rainy'], mood:['happy','normal'], gender:['male','female'], hunger:['moderate'], taste:['sweet','sour'], type:['meat'], people:['duo','group'], budget:['moderate'] }},
-  { name:'볶음밥',     emoji:'🍳', cat:'중식', desc:'팬에서 불맛 가득하게 볶아낸 한 그릇', tags:{ meal:['lunch','dinner'], weather:['hot','cool','cold','rainy'], mood:['normal'], gender:['male','female'], hunger:['moderate','light'], taste:['savory','salty'], type:['rice'], people:['solo','duo','coworker'], budget:['cheap','moderate'] }},
-  { name:'마라탕',     emoji:'🌶️', cat:'중식', desc:'얼얼하고 매운 마라 국물에 좋아하는 재료 골라담기', tags:{ meal:['lunch','dinner'], weather:['cold','rainy'], mood:['stressed','happy'], gender:['female','male'], hunger:['moderate','very'], taste:['spicy'], type:['soup','noodle'], people:['solo','duo'], budget:['moderate'] }},
-  { name:'마라샹궈',   emoji:'🔥', cat:'중식', desc:'기름에 볶아낸 매운 마라, 볶음의 풍미', tags:{ meal:['dinner'], weather:['cold','cool'], mood:['stressed','happy'], gender:['male','female'], hunger:['very','moderate'], taste:['spicy','salty'], type:['meat'], people:['duo','group'], budget:['moderate','nice'] }},
-  { name:'깐풍기',     emoji:'🍗', cat:'중식', desc:'바삭한 닭고기에 매콤달콤한 소스를 버무린', tags:{ meal:['dinner'], weather:['hot','cool','cold','rainy'], mood:['happy'], gender:['male','female'], hunger:['moderate'], taste:['spicy','sweet'], type:['meat'], people:['duo','group'], budget:['moderate'] }},
+  // ── [일반 모드] 중식/일식/양식/분식 ──
+  { name:'짜장면', emoji:'🍜', cat:'중식', desc:'달콤 짭짤한 춘장 소스에 비빈 국민 면요리', modes:['general'], tags:{ meal:['lunch','dinner'], weather:['hot','cool','cold','rainy'], mood:['normal'], gender:['male','female'], hunger:['moderate'], taste:['savory','sweet'], type:['noodle'], people:['solo','duo','coworker'], budget:['cheap'] }},
+  { name:'짬뽕', emoji:'🍜', cat:'중식', desc:'불맛 나는 얼큰 해물 국물에 쫄깃한 면발', modes:['general'], tags:{ meal:['lunch','dinner'], weather:['cold','rainy'], mood:['stressed','normal'], gender:['male'], hunger:['very','moderate'], taste:['spicy','savory'], type:['noodle','soup'], people:['solo','duo','coworker'], budget:['cheap'] }},
+  { name:'탕수육', emoji:'🍖', cat:'중식', desc:'바삭한 튀김에 새콤달콤 과일 소스', modes:['general'], tags:{ meal:['lunch','dinner'], weather:['hot','cool','cold','rainy'], mood:['happy','normal'], gender:['male','female'], hunger:['moderate'], taste:['sweet','sour'], type:['meat'], people:['duo','group'], budget:['cheap','moderate'] }},
+  { name:'마라탕', emoji:'🌶️', cat:'중식', desc:'얼얼한 마라 국물에 내가 고른 토핑 가득', modes:['general'], tags:{ meal:['lunch','dinner'], weather:['cold','rainy'], mood:['stressed','happy'], gender:['female','male'], hunger:['moderate','very'], taste:['spicy'], type:['soup','noodle'], people:['solo','duo'], budget:['cheap','moderate'] }},
+  { name:'초밥', emoji:'🍣', cat:'일식', desc:'신선한 제철 생선과 밥의 정갈한 조화', modes:['general','diet'], tags:{ meal:['lunch','dinner'], weather:['hot','cool','cold','rainy'], mood:['happy','normal'], gender:['male','female'], hunger:['moderate','light'], taste:['sour','savory'], type:['rice','light'], people:['solo','duo'], budget:['cheap','moderate','nice'] }},
+  { name:'하이엔드 스시 오마카세', emoji:'🍣', cat:'일식', desc:'셰프가 쥐어주는 극상의 미식 스시 코스', modes:['general'], tags:{ meal:['dinner'], weather:['hot','cool','cold','rainy'], mood:['happy'], gender:['male','female'], hunger:['moderate','very'], taste:['savory','sour'], type:['rice'], people:['solo','duo'], budget:['luxury'] }},
+  { name:'돈카츠', emoji:'🍖', cat:'일식', desc:'두툼한 등심/안심을 바삭하게 튀겨낸 카츠', modes:['general'], tags:{ meal:['lunch','dinner'], weather:['hot','cool','cold','rainy'], mood:['normal','happy'], gender:['male','female'], hunger:['moderate','very'], taste:['savory'], type:['meat'], people:['solo','duo','coworker'], budget:['cheap'] }},
+  { name:'라멘', emoji:'🍜', cat:'일식', desc:'진한 돈코츠 육수에 차슈와 반숙란 토핑', modes:['general'], tags:{ meal:['lunch','dinner'], weather:['cold','rainy','cool'], mood:['stressed','normal'], gender:['male'], hunger:['moderate','very'], taste:['savory','salty'], type:['noodle','soup'], people:['solo','duo'], budget:['cheap'] }},
+  { name:'파스타', emoji:'🍝', cat:'양식', desc:'크림, 오일, 토마토 취향대로 고르는 파스타', modes:['general'], tags:{ meal:['lunch','dinner'], weather:['cool','cold','hot'], mood:['happy','normal'], gender:['female','male'], hunger:['moderate'], taste:['savory','sweet','sour'], type:['noodle'], people:['solo','duo'], budget:['cheap','moderate'] }},
+  { name:'프리미엄 티본 스테이크', emoji:'🥩', cat:'양식', desc:'육즙 가득 두툼한 티본 스테이크와 와인', modes:['general'], tags:{ meal:['dinner'], weather:['cool','cold'], mood:['happy'], gender:['male','female'], hunger:['moderate','very'], taste:['savory','salty'], type:['meat'], people:['duo','group'], budget:['nice','luxury'] }},
+  { name:'피자', emoji:'🍕', cat:'양식', desc:'고소한 치즈가 쭈욱 늘어나는 파티 푸드', modes:['general'], tags:{ meal:['lunch','dinner','snack'], weather:['hot','cool','cold','rainy'], mood:['happy'], gender:['male','female'], hunger:['moderate','very'], taste:['savory','salty'], type:['light'], people:['duo','group'], budget:['cheap','moderate'] }},
+  { name:'수제버거', emoji:'🍔', cat:'양식', desc:'육즙 터지는 소고기 패티와 신선한 채소', modes:['general'], tags:{ meal:['lunch','dinner','snack'], weather:['hot','cool','cold','rainy'], mood:['normal','happy'], gender:['male'], hunger:['moderate','very'], taste:['savory','salty'], type:['meat','light'], people:['solo','duo'], budget:['cheap'] }},
+  { name:'떡볶이', emoji:'🍢', cat:'분식', desc:'매콤달콤 쫄깃한 떡과 튀김, 순대 세트', modes:['general'], tags:{ meal:['lunch','dinner','snack'], weather:['hot','cool','cold','rainy'], mood:['stressed','happy'], gender:['female','male'], hunger:['light','moderate'], taste:['spicy','sweet'], type:['light'], people:['solo','duo','group'], budget:['cheap'] }},
+  { name:'후라이드/양념 치킨', emoji:'🍗', cat:'치킨', desc:'바삭한 튀김옷과 매콤달콤 양념 치맥', modes:['general'], tags:{ meal:['dinner','snack'], weather:['hot','cool','cold','rainy'], mood:['happy','stressed'], gender:['male','female'], hunger:['moderate','very'], taste:['savory','spicy','sweet'], type:['meat'], people:['solo','duo','group'], budget:['moderate'] }},
 
-  // ── 일식 ──
-  { name:'초밥',       emoji:'🍣', cat:'일식', desc:'신선한 생선과 밥의 심플한 하모니', tags:{ meal:['lunch','dinner'], weather:['hot','cool','cold','rainy'], mood:['happy','normal'], gender:['male','female'], hunger:['moderate','light'], taste:['sour','savory'], type:['rice','light'], people:['solo','duo'], budget:['moderate','nice','luxury'] }},
-  { name:'라멘',       emoji:'🍜', cat:'일식', desc:'진한 돈코츠 국물에 쫄깃한 면, 일본식 라면', tags:{ meal:['lunch','dinner'], weather:['cold','rainy','cool'], mood:['stressed','normal'], gender:['male'], hunger:['moderate','very'], taste:['savory','salty'], type:['noodle','soup'], people:['solo','duo'], budget:['moderate'] }},
-  { name:'우동',       emoji:'🍜', cat:'일식', desc:'두툼한 면발에 깔끔한 간장 국물', tags:{ meal:['lunch','dinner'], weather:['cold','rainy'], mood:['normal','sad'], gender:['male','female'], hunger:['moderate'], taste:['savory'], type:['noodle','soup'], people:['solo','duo','coworker'], budget:['cheap','moderate'] }},
-  { name:'돈카츠',     emoji:'🍖', cat:'일식', desc:'두툼한 등심/안심을 바삭하게 튀긴 일본식 커틀릿', tags:{ meal:['lunch','dinner'], weather:['hot','cool','cold','rainy'], mood:['normal','happy'], gender:['male','female'], hunger:['moderate','very'], taste:['savory'], type:['meat'], people:['solo','duo','coworker'], budget:['moderate'] }},
-  { name:'카레',       emoji:'🍛', cat:'일식', desc:'걸쭉한 카레 소스에 밥 한 그릇, 든든한 한 끼', tags:{ meal:['lunch','dinner'], weather:['cold','rainy','cool'], mood:['normal'], gender:['male','female'], hunger:['moderate'], taste:['savory','spicy'], type:['rice'], people:['solo','duo','coworker'], budget:['cheap','moderate'] }},
-  { name:'규동',       emoji:'🍚', cat:'일식', desc:'달짝지근한 소고기 덮밥, 빠르고 든든하게', tags:{ meal:['lunch','dinner'], weather:['hot','cool','cold','rainy'], mood:['normal'], gender:['male'], hunger:['moderate','very'], taste:['savory','sweet'], type:['rice'], people:['solo','coworker'], budget:['cheap','moderate'] }},
-  { name:'연어덮밥',   emoji:'🍣', cat:'일식', desc:'신선한 연어회가 가득, 건강한 한 끼', tags:{ meal:['lunch','dinner'], weather:['hot','cool'], mood:['happy','normal'], gender:['female','male'], hunger:['moderate','light'], taste:['savory','sour'], type:['rice'], people:['solo','duo'], budget:['moderate','nice'] }},
-  { name:'오니기리',   emoji:'🍙', cat:'일식', desc:'한 입에 쏙, 간편한 일본식 주먹밥', tags:{ meal:['breakfast','lunch','snack'], weather:['hot','cool','cold','rainy'], mood:['normal'], gender:['male','female'], hunger:['light','bored'], taste:['savory'], type:['rice','light'], people:['solo'], budget:['cheap'] }},
+  // ── [다이어트 모드] 저칼로리 & 고단백 식단 ──
+  { name:'닭가슴살 아보카도 샐러드', emoji:'🥗', cat:'다이어트', desc:'신선한 채소와 고단백 닭가슴살, 아보카도 볼', modes:['diet'], tags:{ meal:['breakfast','lunch','dinner'], weather:['hot','cool','cold','rainy'], mood:['normal','happy'], gender:['male','female'], hunger:['light','moderate'], taste:['savory','sour'], type:['light'], people:['solo','duo'], budget:['cheap'] }},
+  { name:'생연어 현미 포케', emoji:'🥑', cat:'다이어트', desc:'신선한 연어, 해초, 아보카도와 현미밥의 균형잡힌 영양', modes:['diet'], tags:{ meal:['lunch','dinner'], weather:['hot','cool'], mood:['happy','normal'], gender:['female','male'], hunger:['moderate'], taste:['savory','sour'], type:['rice','light'], people:['solo','duo'], budget:['cheap'] }},
+  { name:'소고기 샤브샤브 (야채 듬뿍)', emoji:'🍲', cat:'다이어트', desc:'기름기 없는 소고기와 풍성한 채소를 맑은 육수에', modes:['diet','general','health'], tags:{ meal:['lunch','dinner'], weather:['cold','rainy','cool'], mood:['happy','normal'], gender:['male','female'], hunger:['moderate','very'], taste:['savory'], type:['soup','meat'], people:['duo','group'], budget:['cheap','moderate'] }},
+  { name:'두부김치 (들기름 구이)', emoji:'🧈', cat:'다이어트', desc:'따뜻하고 고소한 두부와 볶음김치의 건강한 단백질', modes:['diet','general'], tags:{ meal:['dinner','snack'], weather:['cool','cold','rainy'], mood:['normal','stressed'], gender:['male','female'], hunger:['moderate','light'], taste:['savory','spicy'], type:['light'], people:['solo','duo'], budget:['cheap'] }},
+  { name:'그릭요거트 & 그래놀라 베리볼', emoji:'🫐', cat:'다이어트', desc:'꾸덕한 무가당 그릭요거트에 베리와 견과류 토핑', modes:['diet'], tags:{ meal:['breakfast','snack'], weather:['hot','cool'], mood:['happy','normal'], gender:['female','male'], hunger:['light','bored'], taste:['sweet','sour'], type:['light'], people:['solo'], budget:['cheap'] }},
+  { name:'순메밀 소바 (냉메밀)', emoji:'🍜', cat:'다이어트', desc:'혈당 부담 없는 100% 순메밀면과 시원한 쯔유', modes:['diet','general'], tags:{ meal:['lunch'], weather:['hot','cool'], mood:['normal','happy'], gender:['male','female'], hunger:['moderate','light'], taste:['savory','sour'], type:['noodle'], people:['solo','duo'], budget:['cheap'] }},
+  { name:'훈제오리 구이 & 구운 채소', emoji:'🦆', cat:'다이어트', desc:'불포화지방산 풍부한 훈제오리와 파프리카, 버섯 구이', modes:['diet'], tags:{ meal:['lunch','dinner'], weather:['cool','cold'], mood:['happy'], gender:['male','female'], hunger:['moderate','very'], taste:['savory'], type:['meat'], people:['solo','duo'], budget:['cheap','moderate'] }},
+  { name:'월남쌈 세트', emoji:'🌯', cat:'다이어트', desc:'라이스페이퍼에 각종 신선 채소와 새우/고기를 싸먹는 건강식', modes:['diet','general'], tags:{ meal:['lunch','dinner'], weather:['hot','cool'], mood:['happy'], gender:['female','male'], hunger:['moderate','very'], taste:['sour','savory'], type:['light','meat'], people:['duo','group'], budget:['moderate'] }},
+  { name:'키토 계란말이 김밥', emoji:'🍙', cat:'다이어트', desc:'밥 대신 푹신한 계란지단으로 꽉 채운 저탄고지 김밥', modes:['diet'], tags:{ meal:['breakfast','lunch','snack'], weather:['hot','cool','cold','rainy'], mood:['normal'], gender:['male','female'], hunger:['light','moderate'], taste:['savory'], type:['rice','light'], people:['solo','coworker'], budget:['cheap'] }},
+  { name:'두부면 바질/토마토 파스타', emoji:'🍝', cat:'다이어트', desc:'밀가루 없는 두부면에 신선한 토마토 소스를 곁들인', modes:['diet'], tags:{ meal:['lunch','dinner'], weather:['cool','hot'], mood:['happy','normal'], gender:['female','male'], hunger:['moderate'], taste:['sour','savory'], type:['noodle'], people:['solo','duo'], budget:['cheap'] }},
+  { name:'구운 닭안심 & 단호박 찜', emoji:'🍗', cat:'다이어트', desc:'부드러운 닭안심 구이와 달콤 포슬포슬한 찐 단호박', modes:['diet','health'], tags:{ meal:['breakfast','lunch','dinner'], weather:['cold','cool'], mood:['normal'], gender:['male','female'], hunger:['moderate'], taste:['savory','sweet'], type:['meat','light'], people:['solo'], budget:['cheap'] }},
+  { name:'연어 스테이크 & 아스파라거스', emoji:'🐟', cat:'다이어트', desc:'오메가-3 가득한 두툼한 연어 구이와 구운 채소', modes:['diet','general'], tags:{ meal:['dinner'], weather:['cool','cold'], mood:['happy'], gender:['female','male'], hunger:['moderate'], taste:['savory'], type:['meat'], people:['solo','duo'], budget:['moderate','nice'] }},
+  { name:'곤약 현미 닭가슴살 볶음밥', emoji:'🍳', cat:'다이어트', desc:'칼로리는 절반, 포만감은 두 배인 든든 볶음밥', modes:['diet'], tags:{ meal:['lunch','dinner'], weather:['hot','cool','cold','rainy'], mood:['normal'], gender:['male','female'], hunger:['moderate'], taste:['savory','salty'], type:['rice'], people:['solo'], budget:['cheap'] }},
+  { name:'서브웨이 로티세리 치킨 샌드위치', emoji:'🥪', cat:'다이어트', desc:'위트 브레드에 야채 듬뿍, 올리브오일&후추 드레싱', modes:['diet'], tags:{ meal:['breakfast','lunch','snack'], weather:['hot','cool','cold','rainy'], mood:['normal'], gender:['male','female'], hunger:['light','moderate'], taste:['savory'], type:['light'], people:['solo','coworker'], budget:['cheap'] }},
 
-  // ── 양식 ──
-  { name:'크림파스타', emoji:'🍝', cat:'양식', desc:'부드러운 크림소스에 감긴 면의 고소한 맛', tags:{ meal:['lunch','dinner'], weather:['cool','cold'], mood:['happy','normal'], gender:['female','male'], hunger:['moderate'], taste:['savory','sweet'], type:['noodle'], people:['solo','duo'], budget:['moderate'] }},
-  { name:'토마토파스타',emoji:'🍝', cat:'양식', desc:'상큼한 토마토소스의 클래식한 파스타', tags:{ meal:['lunch','dinner'], weather:['hot','cool','cold','rainy'], mood:['normal','happy'], gender:['female','male'], hunger:['moderate'], taste:['sour','savory'], type:['noodle'], people:['solo','duo'], budget:['moderate'] }},
-  { name:'피자',       emoji:'🍕', cat:'양식', desc:'치즈가 늘어나는 모두의 인기 메뉴', tags:{ meal:['lunch','dinner','snack'], weather:['hot','cool','cold','rainy'], mood:['happy'], gender:['male','female'], hunger:['moderate','very'], taste:['savory','salty'], type:['light'], people:['duo','group'], budget:['moderate'] }},
-  { name:'햄버거',     emoji:'🍔', cat:'양식', desc:'든든한 패티에 신선한 채소, 빠르고 맛있게', tags:{ meal:['lunch','dinner','snack'], weather:['hot','cool','cold','rainy'], mood:['normal','happy'], gender:['male'], hunger:['moderate','very'], taste:['savory','salty'], type:['meat','light'], people:['solo','duo'], budget:['cheap','moderate'] }},
-  { name:'스테이크',   emoji:'🥩', cat:'양식', desc:'겉바속촉 완벽하게 구운 프리미엄 스테이크', tags:{ meal:['dinner'], weather:['cool','cold'], mood:['happy'], gender:['male','female'], hunger:['moderate','very'], taste:['savory','salty'], type:['meat'], people:['solo','duo'], budget:['nice','luxury'] }},
-  { name:'샐러드',     emoji:'🥗', cat:'양식', desc:'신선한 채소와 드레싱으로 가볍고 건강하게', tags:{ meal:['lunch'], weather:['hot','cool'], mood:['normal','happy'], gender:['female'], hunger:['light','bored'], taste:['sour','savory'], type:['light'], people:['solo','duo'], budget:['moderate'] }},
-  { name:'리조또',     emoji:'🍚', cat:'양식', desc:'크리미한 치즈와 쌀이 만난 이탈리안 쌀요리', tags:{ meal:['lunch','dinner'], weather:['cold','cool'], mood:['happy','normal'], gender:['female','male'], hunger:['moderate'], taste:['savory'], type:['rice'], people:['solo','duo'], budget:['moderate','nice'] }},
-  { name:'샌드위치',   emoji:'🥪', cat:'양식', desc:'빵 사이에 다양한 재료를 넣은 간편식', tags:{ meal:['breakfast','lunch','snack'], weather:['hot','cool','cold','rainy'], mood:['normal'], gender:['male','female'], hunger:['light','moderate'], taste:['savory'], type:['light'], people:['solo','coworker'], budget:['cheap','moderate'] }},
-  { name:'브런치',     emoji:'🥞', cat:'양식', desc:'팬케이크, 에그베네딕트... 여유로운 아침 식사', tags:{ meal:['breakfast','lunch'], weather:['cool'], mood:['happy'], gender:['female'], hunger:['moderate','light'], taste:['savory','sweet'], type:['light','rice'], people:['solo','duo'], budget:['moderate','nice'] }},
-  { name:'그라탕',     emoji:'🧀', cat:'양식', desc:'치즈를 듬뿍 올려 오븐에 구운 크리미한 요리', tags:{ meal:['lunch','dinner'], weather:['cold'], mood:['normal','happy'], gender:['female','male'], hunger:['moderate'], taste:['savory'], type:['rice'], people:['solo','duo'], budget:['moderate'] }},
-
-  // ── 분식/간식 ──
-  { name:'라면',       emoji:'🍜', cat:'분식', desc:'한국인의 영혼의 음식, 따끈한 라면 한 그릇', tags:{ meal:['lunch','dinner','snack'], weather:['cold','rainy'], mood:['stressed','normal'], gender:['male','female'], hunger:['moderate','light'], taste:['spicy','savory'], type:['noodle','soup'], people:['solo','duo'], budget:['cheap'] }},
-  { name:'만두',       emoji:'🥟', cat:'분식', desc:'고기와 야채가 가득한 쫄깃한 만두', tags:{ meal:['lunch','snack'], weather:['cold','cool'], mood:['normal'], gender:['male','female'], hunger:['light','moderate'], taste:['savory'], type:['light'], people:['solo','duo','coworker'], budget:['cheap'] }},
-  { name:'어묵탕',     emoji:'🍢', cat:'분식', desc:'시원한 국물에 꼬치 어묵, 겨울의 맛', tags:{ meal:['dinner','snack'], weather:['cold','rainy'], mood:['normal','sad'], gender:['male','female'], hunger:['light','moderate'], taste:['savory'], type:['soup','light'], people:['solo','duo'], budget:['cheap'] }},
-  { name:'토스트',     emoji:'🍞', cat:'분식', desc:'길거리 토스트, 간단하지만 맛있는 한 끼', tags:{ meal:['breakfast','snack'], weather:['hot','cool','cold','rainy'], mood:['normal'], gender:['male','female'], hunger:['light','bored'], taste:['savory','sweet'], type:['light'], people:['solo'], budget:['cheap'] }},
-
-  // ── 동남아 ──
-  { name:'쌀국수(포)', emoji:'🍜', cat:'베트남', desc:'맑고 깊은 국물에 부드러운 쌀면, 라임 한 조각', tags:{ meal:['lunch','dinner'], weather:['hot','cool'], mood:['normal','happy'], gender:['female','male'], hunger:['moderate','light'], taste:['savory','sour'], type:['noodle','soup'], people:['solo','duo'], budget:['moderate'] }},
-  { name:'팟타이',     emoji:'🍜', cat:'태국', desc:'달콤 새콤한 태국식 볶음면, 이국적인 맛', tags:{ meal:['lunch','dinner'], weather:['hot'], mood:['happy'], gender:['male','female'], hunger:['moderate'], taste:['sweet','sour'], type:['noodle'], people:['solo','duo'], budget:['moderate'] }},
-  { name:'똠양꿍',     emoji:'🍲', cat:'태국', desc:'새콤하고 매콤한 태국식 새우 수프', tags:{ meal:['dinner'], weather:['hot','rainy'], mood:['happy','stressed'], gender:['female','male'], hunger:['moderate'], taste:['spicy','sour'], type:['soup'], people:['duo','group'], budget:['moderate','nice'] }},
-  { name:'카오팟',     emoji:'🍚', cat:'태국', desc:'향신료가 살짝 가미된 태국식 볶음밥', tags:{ meal:['lunch','dinner'], weather:['hot'], mood:['normal'], gender:['male','female'], hunger:['moderate'], taste:['savory'], type:['rice'], people:['solo','duo'], budget:['moderate'] }},
-
-  // ── 치킨/야식 ──
-  { name:'후라이드치킨',emoji:'🍗', cat:'치킨', desc:'바삭바삭 황금빛 후라이드, 치킨은 진리', tags:{ meal:['dinner','snack'], weather:['hot','cool','cold','rainy'], mood:['happy','stressed'], gender:['male','female'], hunger:['moderate','very'], taste:['savory','salty'], type:['meat'], people:['solo','duo','group'], budget:['moderate'] }},
-  { name:'양념치킨',   emoji:'🍗', cat:'치킨', desc:'달콤 매콤한 양념 소스가 듬뿍 입혀진 치킨', tags:{ meal:['dinner','snack'], weather:['hot','cool','cold','rainy'], mood:['happy'], gender:['male','female'], hunger:['moderate','very'], taste:['sweet','spicy'], type:['meat'], people:['solo','duo','group'], budget:['moderate'] }},
-  { name:'곱창',       emoji:'🔥', cat:'한식', desc:'불 위에서 구운 쫄깃한 곱창, 특유의 감칠맛', tags:{ meal:['dinner','snack'], weather:['cool','cold'], mood:['happy','stressed'], gender:['male'], hunger:['moderate','very'], taste:['savory','spicy','salty'], type:['meat'], people:['duo','group'], budget:['moderate','nice'] }},
-
-  // ── 디저트/카페 ──
-  { name:'팥빙수',     emoji:'🍧', cat:'디저트', desc:'여름의 꽃! 달콤한 팥과 얼음의 시원함', tags:{ meal:['snack'], weather:['hot'], mood:['happy','normal'], gender:['female','male'], hunger:['bored','light'], taste:['sweet'], type:['light'], people:['solo','duo'], budget:['moderate'] }},
-  { name:'아이스크림', emoji:'🍨', cat:'디저트', desc:'달콤하고 차가운 행복 한 스쿱', tags:{ meal:['snack'], weather:['hot'], mood:['happy','sad'], gender:['male','female'], hunger:['bored'], taste:['sweet'], type:['light'], people:['solo','duo'], budget:['cheap'] }},
-  { name:'케이크',     emoji:'🍰', cat:'디저트', desc:'부드럽고 달콤한 케이크 한 조각으로 기분 UP', tags:{ meal:['snack'], weather:['hot','cool','cold','rainy'], mood:['happy','sad'], gender:['female'], hunger:['bored','light'], taste:['sweet'], type:['light'], people:['solo','duo'], budget:['moderate'] }},
-  { name:'와플',       emoji:'🧇', cat:'디저트', desc:'바삭한 와플에 크림과 과일을 올려서', tags:{ meal:['breakfast','snack'], weather:['hot','cool','cold','rainy'], mood:['happy'], gender:['female'], hunger:['bored','light'], taste:['sweet'], type:['light'], people:['solo','duo'], budget:['moderate'] }},
-  { name:'죽',         emoji:'🥣', cat:'한식', desc:'속이 편안해지는 따뜻한 한 그릇', tags:{ meal:['breakfast'], weather:['cold','rainy','cool'], mood:['sad','normal'], gender:['male','female'], hunger:['light','moderate'], taste:['savory'], type:['soup','rice'], people:['solo'], budget:['cheap','moderate'] }},
-  { name:'베이글',     emoji:'🥯', cat:'카페', desc:'쫄깃한 베이글에 크림치즈 한 스쿱', tags:{ meal:['breakfast','snack'], weather:['hot','cool','cold','rainy'], mood:['normal','happy'], gender:['female'], hunger:['light','bored'], taste:['savory','sweet'], type:['light'], people:['solo'], budget:['cheap','moderate'] }},
+  // ── [건강 / 회복식 모드] 소화 잘 되고 부드러운 힐링 메뉴 ──
+  { name:'영양 전복죽', emoji:'🥣', cat:'회복식', desc:'바다의 산삼 전복을 내장과 함께 고소하게 끓인 보양죽', modes:['health','general'], tags:{ meal:['breakfast','lunch','dinner'], weather:['cold','rainy','cool','hot'], mood:['sad','normal'], gender:['male','female'], hunger:['light','moderate','very'], taste:['savory'], type:['soup','rice'], people:['solo','duo'], budget:['cheap','moderate'] }},
+  { name:'소고기 야채죽', emoji:'🥣', cat:'회복식', desc:'부드럽게 다진 소고기와 갖은 채소로 속을 편안하게', modes:['health'], tags:{ meal:['breakfast','lunch','dinner'], weather:['cold','rainy','cool'], mood:['sad','normal'], gender:['male','female'], hunger:['light','moderate'], taste:['savory'], type:['soup','rice'], people:['solo'], budget:['cheap'] }},
+  { name:'삼계 닭죽', emoji:'🥣', cat:'회복식', desc:'푹 고아낸 닭가슴살 살코기와 찹쌀의 부드러운 영양죽', modes:['health'], tags:{ meal:['breakfast','lunch','dinner'], weather:['cold','rainy','hot'], mood:['sad','normal'], gender:['male','female'], hunger:['light','moderate'], taste:['savory'], type:['soup','rice'], people:['solo'], budget:['cheap'] }},
+  { name:'달콤한 단호박죽', emoji:'🥣', cat:'회복식', desc:'달콤하고 부드럽게 쑨 단호박에 쫄깃한 새알심', modes:['health','diet'], tags:{ meal:['breakfast','snack'], weather:['cold','cool','rainy'], mood:['sad','happy'], gender:['female','male'], hunger:['light','bored'], taste:['sweet'], type:['soup','light'], people:['solo'], budget:['cheap'] }},
+  { name:'고소한 잣죽', emoji:'🥣', cat:'회복식', desc:'고소하고 부드러운 잣 향이 입안 가득 퍼지는 정갈한 죽', modes:['health'], tags:{ meal:['breakfast','snack'], weather:['cold','cool'], mood:['sad','normal'], gender:['male','female'], hunger:['light'], taste:['savory'], type:['soup'], people:['solo'], budget:['cheap'] }},
+  { name:'흰쌀죽 & 정갈한 맛간장', emoji:'🥣', cat:'회복식', desc:'속이 아플 때 가장 편안하게 넘어가는 순수한 흰죽', modes:['health'], tags:{ meal:['breakfast','lunch','dinner'], weather:['cold','rainy','cool','hot'], mood:['sad'], gender:['male','female'], hunger:['light'], taste:['savory'], type:['soup','rice'], people:['solo'], budget:['cheap'] }},
+  { name:'맑은 순두부 백반', emoji:'🍲', cat:'회복식', desc:'자극 없는 몽글몽글 순두부에 양념간장 살짝 얹은 식사', modes:['health','diet'], tags:{ meal:['breakfast','lunch','dinner'], weather:['cold','rainy','cool'], mood:['normal','sad'], gender:['male','female'], hunger:['light','moderate'], taste:['savory'], type:['soup','rice'], people:['solo','coworker'], budget:['cheap'] }},
+  { name:'소고기 무국 백반', emoji:'🥣', cat:'회복식', desc:'달큼한 무와 소고기를 맑고 시원하게 끓여낸 정갈한 국', modes:['health','general'], tags:{ meal:['breakfast','lunch','dinner'], weather:['cold','rainy'], mood:['normal','sad'], gender:['male','female'], hunger:['moderate'], taste:['savory'], type:['soup','rice'], people:['solo','coworker'], budget:['cheap'] }},
+  { name:'황태 북어해장국', emoji:'🍲', cat:'회복식', desc:'구수한 황태와 콩나물이 어우러져 속을 맑게 풀어주는 국', modes:['health','general'], tags:{ meal:['breakfast','lunch'], weather:['cold','rainy'], mood:['stressed','sad'], gender:['male','female'], hunger:['moderate'], taste:['savory'], type:['soup','rice'], people:['solo','coworker'], budget:['cheap'] }},
+  { name:'따뜻한 뚝배기 계란찜 백반', emoji:'🍳', cat:'회복식', desc:'푸딩처럼 부드러운 달걀찜과 따뜻한 공깃밥', modes:['health'], tags:{ meal:['breakfast','lunch','dinner'], weather:['cold','cool'], mood:['sad','normal'], gender:['male','female'], hunger:['light','moderate'], taste:['savory'], type:['rice','light'], people:['solo'], budget:['cheap'] }},
+  { name:'구수한 누룽지 탕', emoji:'🍚', cat:'회복식', desc:'바삭하게 누른 밥에 끓는 물을 부어 구수하게 훌훌 넘기는 맛', modes:['health'], tags:{ meal:['breakfast','dinner','snack'], weather:['cold','rainy'], mood:['sad','normal'], gender:['male','female'], hunger:['light','moderate'], taste:['savory'], type:['soup','rice'], people:['solo'], budget:['cheap'] }},
+  { name:'맑은 대구 지리탕', emoji:'🍲', cat:'회복식', desc:'미나리와 대구 살코기가 듬뿍 든 담백하고 맑은 탕', modes:['health','general'], tags:{ meal:['lunch','dinner'], weather:['cold','rainy'], mood:['normal'], gender:['male','female'], hunger:['moderate','very'], taste:['savory'], type:['soup','meat'], people:['duo','group'], budget:['moderate'] }},
+  { name:'버섯 들깨 순두부탕', emoji:'🍄', cat:'회복식', desc:'고소한 들깨가루와 쫄깃한 버섯, 부드러운 두부의 하모니', modes:['health','diet'], tags:{ meal:['lunch','dinner'], weather:['cold','rainy','cool'], mood:['normal','sad'], gender:['female','male'], hunger:['moderate'], taste:['savory'], type:['soup'], people:['solo','duo'], budget:['cheap'] }},
+  { name:'오트밀 바나나 포리지', emoji:'🥣', cat:'회복식', desc:'따뜻한 오트밀 죽에 으깬 바나나와 시나몬을 얹은 서양식 힐링푸드', modes:['health','diet'], tags:{ meal:['breakfast','snack'], weather:['cold','cool'], mood:['sad','happy'], gender:['female','male'], hunger:['light'], taste:['sweet','savory'], type:['soup','light'], people:['solo'], budget:['cheap'] }}
 ];
 
 /* ================================================================
-   STATE
-   ================================================================ */
-let currentQ = 0;
-const answers = {};
-
-/* ================================================================
-   HELPERS – SCREEN SWITCHING
+   SCREEN SWITCHING
    ================================================================ */
 function showScreen(id) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
@@ -584,7 +826,11 @@ function renderQuestion() {
   document.getElementById('prog-pct').textContent  = pct + '%';
   document.getElementById('prog-fill').style.width  = pct + '%';
 
-  // question
+  // Mode tag update
+  const modeLabels = { general: '🍱 일반 모드', diet: '🥗 다이어트 모드', health: '🥣 건강/회복식 모드' };
+  document.getElementById('q-mode-tag').textContent = modeLabels[selectedMode] || '🍱 일반 모드';
+
+  // question info
   document.getElementById('q-emoji').textContent = q.emoji;
   document.getElementById('q-text').textContent  = q.text;
 
@@ -602,17 +848,17 @@ function renderQuestion() {
   // prev button
   document.getElementById('btn-prev').classList.toggle('hidden', currentQ === 0);
 
-  // re-trigger animation
+  // animation reflow
   const card = document.querySelector('.question-card');
   card.style.animation = 'none';
-  card.offsetHeight;              // reflow
+  card.offsetHeight;
   card.style.animation = 'slideIn .35s ease';
 }
 
 function selectOption(qId, value) {
   answers[qId] = value;
 
-  // brief highlight
+  // highlight clicked
   document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
   event.currentTarget.classList.add('selected');
 
@@ -623,11 +869,14 @@ function selectOption(qId, value) {
     } else {
       showLoading();
     }
-  }, 300);
+  }, 260);
 }
 
 function prevQ() {
-  if (currentQ > 0) { currentQ--; renderQuestion(); }
+  if (currentQ > 0) {
+    currentQ--;
+    renderQuestion();
+  }
 }
 
 /* ================================================================
@@ -635,37 +884,71 @@ function prevQ() {
    ================================================================ */
 function showLoading() {
   showScreen('loading');
+  const modeTexts = {
+      general: '현재 날씨와 취향에 딱 맞는 맛있는 메뉴를 선별하고 있어요!',
+      diet: '칼로리 걱정 없는 건강하고 맛있는 다이어트 식단을 계산하고 있어요!',
+      health: '속이 편안하고 기운을 북돋아줄 정갈한 회복식을 고르고 있어요!'
+  };
+  document.getElementById('loading-sub-text').textContent = modeTexts[selectedMode] || '당신의 취향을 분석하고 있어요!';
+
   setTimeout(() => {
     const results = recommend();
     renderResult(results);
     showScreen('result');
-  }, 1800);
+  }, 1600);
 }
 
 /* ================================================================
    RECOMMENDATION ENGINE
    ================================================================ */
 function recommend() {
-  // weights per question category
+  // 1. Filter by selected mode
+  let pool = MENUS.filter(m => m.modes && m.modes.includes(selectedMode));
+  if (pool.length === 0) pool = MENUS;
+
+  // 2. Weights
   const WEIGHTS = {
-    meal: 1, weather: 1, mood: 1, gender: 1,
-    hunger: 1, taste: 2, type: 2, people: 1, budget: 1
+    gender: 1,
+    meal: 1,
+    mood: 1,
+    hunger: 1,
+    taste: 2,
+    type: 2,
+    people: 1,
+    budget: 1
   };
 
-  const scored = MENUS.map(menu => {
+  const scored = pool.map(menu => {
     let score = 0;
     let maxScore = 0;
+
+    // 질문 기반 점수 계산
     for (const key of Object.keys(WEIGHTS)) {
       const w = WEIGHTS[key];
       maxScore += w;
-      if (answers[key] && menu.tags[key] && menu.tags[key].includes(answers[key])) {
+
+      if (key === 'taste' && answers.taste === 'any') {
+        // '잘 모르겠어요' 선택 시 맛에 대한 편향 없이 기본 점수 부여
+        score += w * 0.75;
+      } else if (answers[key] && menu.tags[key] && menu.tags[key].includes(answers[key])) {
         score += w;
       }
     }
-    return { menu, score, maxScore, pct: Math.round((score / maxScore) * 100) };
+
+    // 3. 자동 감지된 실시간 날씨 가중치 (추가 보너스 2점)
+    maxScore += 2;
+    if (detectedWeather && menu.tags.weather) {
+      const weatherMatch = detectedWeather.some(w => menu.tags.weather.includes(w));
+      if (weatherMatch) {
+        score += 2;
+      }
+    }
+
+    const pct = Math.min(100, Math.max(50, Math.round((score / maxScore) * 100)));
+    return { menu, score, maxScore, pct };
   });
 
-  // sort desc, break ties randomly
+  // 점수 내림차순 정렬 + 동점 시 무작위 셔플
   scored.sort((a, b) => b.score - a.score || Math.random() - 0.5);
 
   return scored.slice(0, 3);
@@ -674,14 +957,22 @@ function recommend() {
 /* ================================================================
    RENDER RESULT
    ================================================================ */
+let lastTop3 = [];
+
 function renderResult(top3) {
-  // menu cards
+  lastTop3 = top3;
+
+  // Mode badge
+  const modeLabels = { general: '🍱 일반 모드 추천', diet: '🥗 다이어트 모드 추천', health: '🥣 건강/회복식 추천' };
+  document.getElementById('res-mode-badge').textContent = modeLabels[selectedMode] || '🍱 일반 모드 추천';
+
+  // Menu cards
   const wrap = document.getElementById('menu-cards');
   wrap.innerHTML = '';
   top3.forEach((item, i) => {
     const card = document.createElement('div');
     card.className = 'menu-card';
-    card.style.animationDelay = (i * 0.2) + 's';
+    card.style.animationDelay = (i * 0.15) + 's';
     card.innerHTML = `
       <div class="mc-header">
         <span class="mc-rank">${i + 1}</span>
@@ -696,17 +987,32 @@ function renderResult(top3) {
     wrap.appendChild(card);
   });
 
-  // reason
+  // Reason
   const reasonBox = document.getElementById('reason-box');
   reasonBox.innerHTML = `<h3>💡 이런 이유로 추천했어요</h3><p>${buildReason()}</p>`;
 
-  // answer summary
+  // Answer summary
   const sumBox = document.getElementById('summary-box');
-  const tags = QUESTIONS.map(q => {
+  const tags = [];
+  
+  // 모드 및 실시간 날씨 태그
+  tags.push(`<span class="stag mode-tag">${modeLabels[selectedMode]}</span>`);
+  tags.push(`<span class="stag weather-tag">${weatherInfo.icon} ${weatherInfo.text}</span>`);
+
+  QUESTIONS.forEach(q => {
     const chosen = q.options.find(o => o.value === answers[q.id]);
-    return chosen ? `<span class="stag">${chosen.emoji} ${chosen.label}</span>` : '';
-  }).join('');
-  sumBox.innerHTML = `<h3>📋 나의 답변 요약</h3><div class="summary-tags">${tags}</div>`;
+    if (chosen) {
+      tags.push(`<span class="stag">${chosen.emoji} ${chosen.label}</span>`);
+    }
+  });
+
+  sumBox.innerHTML = `<h3>📋 나의 답변 및 조건 요약</h3><div class="summary-tags">${tags.join('')}</div>`;
+
+  // Native share button
+  if (navigator.share) {
+    document.getElementById('btn-native-share').style.display = '';
+  }
+  document.getElementById('share-panel').classList.remove('open');
 }
 
 /* ================================================================
@@ -715,27 +1021,45 @@ function renderResult(top3) {
 function buildReason() {
   const parts = [];
 
-  // weather
-  const wMap = { hot:'더운 날씨에 어울리는', cool:'선선한 날에 잘 맞는', cold:'추운 날 몸을 녹여줄', rainy:'비 오는 날 생각나는' };
-  if (answers.weather) parts.push(wMap[answers.weather]);
+  // 모드별 수식어
+  if (selectedMode === 'diet') {
+    parts.push('칼로리 부담 없는 가벼운 식단을 위해');
+  } else if (selectedMode === 'health') {
+    parts.push('속을 편안하게 달래줄 부드러운 음식을 위해');
+  }
 
-  // mood
-  const mMap = { stressed:'스트레스 해소에 좋은', happy:'기분 좋은 날 더 즐거워지는', normal:'편안하게 즐길 수 있는', sad:'마음을 위로해줄' };
-  if (answers.mood) parts.push(mMap[answers.mood]);
+  // 실시간 날씨 반영
+  if (detectedWeather.includes('rainy')) {
+    parts.push('비 오고 흐린 날씨에 생각나는');
+  } else if (detectedWeather.includes('cold')) {
+    parts.push(`쌀쌀한 기온(${weatherInfo.temp}°C)에 몸을 녹여줄`);
+  } else if (detectedWeather.includes('hot')) {
+    parts.push(`더운 날씨(${weatherInfo.temp}°C)에 입맛을 살려줄`);
+  } else {
+    parts.push(`쾌적한 날씨(${weatherInfo.temp}°C)에 기분 좋게 즐길 수 있는`);
+  }
 
-  // taste
-  const tMap = { spicy:'매콤하고 자극적인', savory:'고소하고 담백한', sweet:'달콤하고 부드러운', sour:'새콤상큼한', salty:'짭짤하고 감칠맛 나는' };
-  if (answers.taste) parts.push(tMap[answers.taste]);
+  // 기분
+  const mMap = { stressed:'스트레스 해소에 어울리는', happy:'기분 좋은 날 더욱 활력을 더해줄', normal:'편안하게 한 끼를 채워줄', sad:'마음을 따스하게 위로해줄' };
+  if (answers.mood && mMap[answers.mood]) parts.push(mMap[answers.mood]);
 
-  // type
-  const tyMap = { soup:'국물 요리', rice:'밥 요리', noodle:'면 요리', meat:'고기 요리', light:'가벼운 음식' };
-  if (answers.type) parts.push(tyMap[answers.type] + '를');
+  // 맛
+  const tMap = { spicy:'매콤하고 칼칼한', savory:'고소하고 담백한', sweet:'달콤하고 부드러운', sour:'새콤상큼한', salty:'감칠맛 도는' };
+  if (answers.taste && tMap[answers.taste]) parts.push(tMap[answers.taste]);
 
-  // hunger
-  const hMap = { very:'배고픈 당신에게 든든하게!', moderate:'적당히 배를 채울 수 있어요.', light:'가볍게 즐기기 딱 좋아요.', bored:'입이 심심할 때 제격이에요.' };
+  // 형태
+  const tyMap = { soup:'국물 요리', rice:'밥 요리', noodle:'면 요리', meat:'단백질 요리', light:'가벼운 음식' };
+  if (answers.type && tyMap[answers.type]) parts.push(tyMap[answers.type] + '를');
 
-  let reason = parts.join(' ') + ' 추천합니다. ';
-  if (answers.hunger) reason += hMap[answers.hunger];
+  let reason = parts.join(' ') + ' 추천해 드립니다. ';
+
+  const hMap = {
+      very: '출출하신 만큼 든든하고 만족스러운 식사가 될 거예요!',
+      moderate: '적당하고 기분 좋은 포만감을 느끼실 수 있어요.',
+      light: '부담 없이 깔끔하게 드시기 딱 좋아요.',
+      bored: '기분 전환으로 가볍게 즐기기 제격이에요.'
+  };
+  if (answers.hunger && hMap[answers.hunger]) reason += hMap[answers.hunger];
 
   return reason;
 }
@@ -746,39 +1070,24 @@ function buildReason() {
 function restart() {
   currentQ = 0;
   Object.keys(answers).forEach(k => delete answers[k]);
-  // close share panel if open
   const panel = document.getElementById('share-panel');
   if (panel) panel.classList.remove('open');
   showScreen('intro');
 }
 
 /* ================================================================
-   SHARE – helpers
+   SHARE FUNCTIONS
    ================================================================ */
-let lastTop3 = [];   // store for sharing
-
-// override renderResult to save top3
-const _origRenderResult = renderResult;
-renderResult = function(top3) {
-  lastTop3 = top3;
-  _origRenderResult(top3);
-  // show native share button if supported
-  if (navigator.share) {
-    document.getElementById('btn-native-share').style.display = '';
-  }
-  // reset share panel
-  document.getElementById('share-panel').classList.remove('open');
-};
-
 function getShareText() {
   if (!lastTop3 || lastTop3.length === 0) {
     return '🍽️ [오늘 뭐 먹지?] 나를 위한 맞춤 메뉴 추천 사이트!';
   }
+  const modeLabels = { general: '일반식', diet: '다이어트식', health: '건강/회복식' };
   const menus = lastTop3.map((item, i) =>
     `${i + 1}위: ${item.menu.emoji} ${item.menu.name} (${item.menu.cat}) - 매칭률 ${item.pct}%`
   ).join('\n');
 
-  return `🍽️ [오늘 뭐 먹지?] 나를 위한 맞춤 메뉴 추천 결과!\n\n${menus}\n\n👉 나도 메뉴 추천받기:`;
+  return `🍽️ [오늘 뭐 먹지?] ${modeLabels[selectedMode]} 맞춤 추천 결과!\n\n${menus}\n\n👉 나도 메뉴 추천받기:`;
 }
 
 function getShareUrl() {
@@ -788,9 +1097,6 @@ function getShareUrl() {
   return 'https://minhyuk.site';
 }
 
-/* ================================================================
-   SHARE – toggle panel
-   ================================================================ */
 function toggleSharePanel() {
   const panel = document.getElementById('share-panel');
   panel.classList.toggle('open');
@@ -799,9 +1105,6 @@ function toggleSharePanel() {
   }
 }
 
-/* ================================================================
-   SHARE – SNS functions (안정적인 공유 및 메신저 연동)
-   ================================================================ */
 function shareX() {
   const text = getShareText();
   const url = getShareUrl();
@@ -829,7 +1132,6 @@ function shareKakao() {
     return;
   }
 
-  // 클립보드 복사 후 메신저 붙여넣기 유도
   copyToClipboard(text, '💬 카카오톡에 보낼 내용이 복사되었어요! 대화방에 붙여넣기 해주세요');
 
   if (isMobile) {
@@ -861,9 +1163,6 @@ function shareInstagram() {
   }
 }
 
-/* ================================================================
-   SHARE – copy functions
-   ================================================================ */
 function copyResult() {
   const text = getShareText() + '\n' + getShareUrl();
   copyToClipboard(text, '📋 추천 결과가 클립보드에 복사되었어요!');
@@ -914,9 +1213,6 @@ function fallbackCopy(text, successMsg) {
   document.body.removeChild(ta);
 }
 
-/* ================================================================
-   SHARE – native Web Share API (mobile)
-   ================================================================ */
 function nativeShare() {
   const text = getShareText();
   const url = getShareUrl();
@@ -931,9 +1227,6 @@ function nativeShare() {
   }
 }
 
-/* ================================================================
-   TOAST
-   ================================================================ */
 function showToast(msg) {
   const el = document.getElementById('toast');
   el.textContent = msg;
@@ -941,6 +1234,11 @@ function showToast(msg) {
   clearTimeout(el._timer);
   el._timer = setTimeout(() => el.classList.remove('show'), 3000);
 }
+
+/* Initialize Weather on Load */
+window.addEventListener('DOMContentLoaded', () => {
+    initWeather();
+});
 </script>
 </body>
 </html>
